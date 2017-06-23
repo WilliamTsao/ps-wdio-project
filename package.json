@@ -1,0 +1,30 @@
+{
+    "name": "ps-web-automation",
+    "version": "1.0.0",
+    "description": "PhotoShelter Web Webdriverio Automation",
+    "main": "wdio.conf.js",
+    "dependencies": {},
+    "scripts": {
+        "test": "wdio wdio.conf.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git@gh.corp.bitshelter.com:BitShelter/ps-web-automation.git"
+    },
+    "keywords": [
+        "automation",
+        "webdriverio",
+        "test",
+        "qa"
+    ],
+    "author": "Eric C. Olivas",
+    "license": "ISC",
+    "devDependencies": {
+        "eslint": "^4.0.0",
+        "wdio-browserstack-service": "^0.1.4",
+        "wdio-json-reporter": "^0.2.1",
+        "wdio-mocha-framework": "^0.5.10",
+        "wdio-selenium-standalone-service": "^0.0.9",
+        "webdriverio": "^4.8.0"
+    }
+}
