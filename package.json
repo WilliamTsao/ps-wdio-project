@@ -21,6 +21,9 @@
     "license": "ISC",
     "devDependencies": {
         "eslint": "^4.0.0",
+        "eslint-config-standard": "^10.2.1",
+        "eslint-plugin-promise": "^3.5.0",
+        "eslint-plugin-standard": "^3.0.1",
         "wdio-browserstack-service": "^0.1.4",
         "wdio-json-reporter": "^0.2.1",
         "wdio-mocha-framework": "^0.5.10",
