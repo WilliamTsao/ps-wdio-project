@@ -5,7 +5,8 @@
     "main": "wdio.conf.js",
     "dependencies": {},
     "scripts": {
-        "test": "wdio wdio.conf.js"
+        "test": "wdio wdio.conf.local.js",
+        "test-bs": "wdio wdio.conf.browserstack.js"
     },
     "repository": {
         "type": "git",
