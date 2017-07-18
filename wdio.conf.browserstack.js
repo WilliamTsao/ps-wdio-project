@@ -10,22 +10,46 @@ exports.config = merge(parentConf.congig, {
     // TBD Browserstack Options: https://www.browserstack.com/local-testing#modifiers
     // TBD Capabilities: https://www.browserstack.com/automate/node#setting-local-tunnel
     capabilities: [{
-        'browserName': 'Firefox',
-        'browser_version': '46.0',
+        'browserName': 'Safari',    // MAC Latest: OSX Sierra
+        'browser_version': '10.1',
+        'os': 'OS X',
+        'os_version': 'Sierra',
+        'resolution': '1024x768'
+    } {
+        'browserName': 'Firefox', 
+        'browser_version': '54.0',
         'os': 'OS X',
         'os_version': 'Sierra',
         'resolution': '1024x768'
     }, {
+        'browserName': 'Chrome',
+        'browser_version': '59.0',
+        'os': 'OS X',
+        'os_version': 'Sierra',
+        'resolution': '1024x768'
+    }, {
+        'browserName': 'MicrosoftEdge',    // Windows
+        'browser_version': '15',
+        'os': 'Windows',
+        'os_version': 'Windows 10',
+        'resolution': '1024x768'
+    }, {
         'browserName': 'IE',
-        'browser_version': '11.0',
+        'browser_version': '11',
         'os': 'Windows',
         'os_version': '10',
         'resolution': '1024x768'
     }, {
-        'browserName': 'Safari',
-        'browser_version': '10.0',
-        'os': 'OS X',
-        'os_version': 'Sierra',
+        'browserName': 'Firefox',
+        'browser_version': '54.0',
+        'os': 'Windows',
+        'os_version': '10',
+        'resolution': '1024x768'
+    }, {
+        'browserName': 'Chrome',
+        'browser_version': '59',
+        'os': 'Windows',
+        'os_version': '10',
         'resolution': '1024x768'
     }]
 })
