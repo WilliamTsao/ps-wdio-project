@@ -6,6 +6,7 @@
     "dependencies": {},
     "scripts": {
         "test": "wdio wdio.conf.local.js",
+        "test-sauce": "wdio wdio.conf.sauce.js",
         "test-bs": "wdio wdio.conf.browserstack.js"
     },
     "repository": {
