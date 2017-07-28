@@ -1,6 +1,6 @@
 'use strict'
 var Page = require('./page')
-const CollectionInfoUiMap = require('../uimap/CollectionInfoMap')
+const CollectionInfoUiMap = require('../uimap/collectionInfoMap')
 const uimap = new CollectionInfoUiMap()
 
 class CollectionInfo extends Page{
