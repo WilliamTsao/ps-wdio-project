@@ -11,6 +11,11 @@ To run tests locally:
 $ yarn run test
 ```
 
+To run tests against Saucelabs:
+```
+$ yarn run test-sauce
+```
+
 To run tests against browserstack
 
 ```
