@@ -2,7 +2,7 @@
 var Page = require('./page')
 const LeftPaneUiMap = require('../uimap/libraryLeftPaneMap')
 const NewCollectionGalleryDialog = require('./newCollectionGalleryDialog')
-const Util = require('../utilities/util')
+const Util = require('../util/util')
 const uimap = new LeftPaneUiMap()
 const util = new Util()
 

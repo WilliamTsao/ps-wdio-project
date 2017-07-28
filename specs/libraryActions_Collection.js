@@ -1,6 +1,6 @@
 const Page = require('../src/pageobjects/page')
 const page = new Page()
-const Util = require('../src/util/utilities')
+const Util = require('../src/util/util')
 const util = new Util()
 const LoginPage = require('../src/pageobjects/LoginPage')
 const Libris = require('../src/pageobjects/LibrisPage')
