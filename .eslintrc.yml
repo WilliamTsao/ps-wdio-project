@@ -2,9 +2,14 @@ env:
   browser: true
   es6: true
   node: true
+  mocha: true
 extends: 'eslint:recommended'
 parserOptions:
   sourceType: module
+globals:
+    browser: true
+    $: true
+    $$: true
 rules:
   indent:
     - error
@@ -18,3 +23,5 @@ rules:
   semi:
     - error
     - never
+  no-console:
+    - off
