@@ -32,7 +32,7 @@ exports.config = {
     // and 30 processes will get spawned. The property handles how many capabilities
     // from the same test should run tests.
     //
-    maxInstances: 1,
+    maxInstances: 8,
     //
     // If you have trouble getting all important capabilities together, check out the
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
@@ -58,7 +58,7 @@ exports.config = {
     sync: true,
     //
     // Level of logging verbosity: silent | verbose | command | data | result | error
-    logLevel: 'verbose',
+    logLevel: 'silent',
     //
     // Enables colors for log output.
     coloredLogs: true,
@@ -68,14 +68,14 @@ exports.config = {
     bail: 0,
     //
     // Saves a screenshot to a given path if a command fails.
-    screenshotPath: './errorShots/',
+    screenshotPath: './screenshots/',
     //
     // Set a base URL in order to shorten url command calls. If your url parameter starts
     // with "/", then the base url gets prepended.
-    baseUrl: 'http://ps.dev.bitshelter.com',
+    baseUrl: 'http://www.photoshelter.com',
     //
     // Default timeout for all waitFor* commands.
-    waitforTimeout: 10000,
+    waitforTimeout: 90000,
     //
     // Default timeout in milliseconds for request
     // if Selenium Grid doesn't send response
@@ -120,12 +120,16 @@ exports.config = {
     // The only one supported by default is 'dot'
     // see also: http://webdriver.io/guide/testrunner/reporters.html
     reporters: ['json'],
+    reporterOptions: {
+        outputDir: './logs'
+    },
 
     //
     // Options to be passed to Mocha.
     // See the full list at http://mochajs.org/
     mochaOpts: {
-        ui: 'bdd'
+        ui: 'bdd',
+        timeout: 90000
     },
     //
     // =====
@@ -161,9 +165,11 @@ exports.config = {
     // },
     //
     before: function() {
-        var chai = require('chai');
-        global.expect = chai.expect;
-        chai.Should();
+        var chai = require('chai')
+        global.expect = chai.expect
+        chai.Should()
+        // browser.windowHandleSize({width: 1600, height: 768})
+        // browser.windowHandleMaximize()
     },
     /**
      * Hook that gets executed before the suite starts

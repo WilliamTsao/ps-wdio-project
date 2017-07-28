@@ -2,9 +2,9 @@
 var Page = require('./page')
 const LeftPane = require('./libraryLeftPane')
 const RightPane = require('./libraryRightPane')
-const CenterPane = require('./libraryCenterPane')
-const LibrisNav = require('./librisNav')
-const LibraryDialog = require('./libraryDialog')
+//const CenterPane = require('./libraryCenterPane')
+//const LibrisNav = require('./librisNav')
+//const LibraryDialog = require('./libraryDialog')
 
 
 class Libris extends Page{
@@ -14,7 +14,7 @@ class Libris extends Page{
     }
 
     isLoaded(){
-        return LeftPane.isLoaded() && RightPane.isLoaded() && CenterPane.isLoaded() && LibrisNav.isLoaded()
+        return LeftPane.isLoaded() && RightPane.isLoaded() //&& CenterPane.isLoaded() && LibrisNav.isLoaded()
     }
 
     getLibraryLeftPane(){
@@ -25,13 +25,13 @@ class Libris extends Page{
         return RightPane
     }
     
-    getLibraryCenterPane(){
-        return CenterPane
-    }
+    // getLibraryCenterPane(){
+    //     return CenterPane
+    // }
     
-    getLibraryDialog(){
-        return LibraryDialog
-    }
+    // getLibraryDialog(){
+    //     return LibraryDialog
+    // }
     
 }
 
