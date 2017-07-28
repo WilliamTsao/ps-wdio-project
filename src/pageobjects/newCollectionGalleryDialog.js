@@ -1,6 +1,6 @@
 'use strict'
 var Page = require('./page')
-const NewCollectionGalleryDialogMap = require('../uimap/NewCollectionGalleryDialogMap')
+const NewCollectionGalleryDialogMap = require('../uimap/newCollectionGalleryDialogMap')
 const uimap = new NewCollectionGalleryDialogMap()
 
 class NewCollectionGalleryDialog extends Page {

@@ -1,8 +1,8 @@
 'use strict'
 var Page = require('./page')
-const LeftPaneUiMap = require('../uimap/LibraryLeftPaneMap')
-const NewCollectionGalleryDialog = require('./NewCollectionGalleryDialog')
-const Util = require('../util/utilities')
+const LeftPaneUiMap = require('../uimap/libraryLeftPaneMap')
+const NewCollectionGalleryDialog = require('./newCollectionGalleryDialog')
+const Util = require('../utilities/util')
 const uimap = new LeftPaneUiMap()
 const util = new Util()
 

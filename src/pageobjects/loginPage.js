@@ -1,6 +1,7 @@
 'use strict'
 var Page = require('./page')
-const UiMap = require('../uimap/LoginMap')
+const UiMap = require('../uimap/loginMap')
+
 var validUsername = 'tsao+wdio@photoshelter.com'
 var validPassword = 'testingPassword'
 

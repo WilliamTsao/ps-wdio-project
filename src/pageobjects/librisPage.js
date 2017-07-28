@@ -8,24 +8,31 @@ const LibraryDialog = require('./libraryDialog')
 
 
 class Libris extends Page{
+
     open(){
         super.open('mu/libris/images/')
     }
+
     isLoaded(){
         return LeftPane.isLoaded() && RightPane.isLoaded() && CenterPane.isLoaded() && LibrisNav.isLoaded()
     }
+
     getLibraryLeftPane(){
         return LeftPane
     }
+    
     getLibraryRightPane(){
         return RightPane
     }
+    
     getLibraryCenterPane(){
         return CenterPane
     }
+    
     getLibraryDialog(){
         return LibraryDialog
     }
+    
 }
 
 module.exports = new Libris()
