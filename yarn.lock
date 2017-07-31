@@ -771,6 +771,10 @@ https-proxy-agent@^1.0.0, https-proxy-agent@~1.0.0:
     debug "2"
     extend "3"
 
+humanize-duration@^3.9.0:
+  version "3.10.1"
+  resolved "https://registry.yarnpkg.com/humanize-duration/-/humanize-duration-3.10.1.tgz#65b550c0aa095156ecb7c340db44ee0bdf71af4b"
+
 iconv-lite@^0.4.17:
   version "0.4.18"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.18.tgz#23d8656b16aae6742ac29732ea8f0336a4789cf2"
@@ -1704,6 +1708,13 @@ wdio-selenium-standalone-service@^0.0.9:
   dependencies:
     fs-extra "^0.30.0"
     selenium-standalone "^6.5.0"
+
+wdio-spec-reporter@~0.0.1:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/wdio-spec-reporter/-/wdio-spec-reporter-0.0.5.tgz#d0fb8fd14af153fe010051bb740aa30ab31063f5"
+  dependencies:
+    babel-runtime "^5.8.25"
+    humanize-duration "^3.9.0"
 
 wdio-sync@0.6.14:
   version "0.6.14"
