@@ -10,6 +10,9 @@ class NewCollectionGalleryDialog extends Page {
     }
 
     newCollectionGallery(collectionGalleryName, isEmbedded = false, collectionGalleryPermission) {
+        console.log('Setting name to: ' + collectionGalleryName)
+        console.log('With permission: ' + collectionGalleryPermission)
+        console.log('isEmbedded: ' + isEmbedded)
         browser.setValue(uimap.nameInput, collectionGalleryName)
         if (collectionGalleryPermission) {
             this.setPermission(isEmbedded, collectionGalleryPermission)
@@ -17,6 +20,8 @@ class NewCollectionGalleryDialog extends Page {
         browser.click(uimap.submit)
     }
 
+    // Problem here is it doesn't return anything
+    // I can't track it
     setPermission(isEmbedded, permission) {
         if (!isEmbedded) {
             var res = browser.execute((select, permissionCode) => {
@@ -24,8 +29,6 @@ class NewCollectionGalleryDialog extends Page {
                 sel.value = permissionCode
                 return sel
             }, uimap.permissionSelect, uimap.permissionOptions(permission))
-
-            console.log('Result: ' + res)
         } else {
             if (permission === 'use different settings') {
                 browser.click(uimap.embeddedPermission.nonInherited)

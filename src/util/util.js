@@ -1,11 +1,15 @@
 'use strict'
 
+const LIBRIS_LIBRARY_ROOT_SELECTOR = '#ctRootHidden ul'
+
 class Util {
+
+
 
     get loadingMessage() { return '.psBusy' }
 
 
-    openAll(level = $('#ctRootHidden ul')) {
+    openAll(level = $(LIBRIS_LIBRARY_ROOT_SELECTOR)) {
         // console.log(`ul: ${level.getAttribute('data-id')}`)
         level.$$('li').forEach((ele) => {
             // console.log(`li: ${ele.getAttribute('data-id')}`)
@@ -26,6 +30,8 @@ class Util {
         return result
     }
 
+    //waitForElementToDisappear(){}
+
     waitForLoadingToComplete() {
         browser.pause(1000)
         try {
@@ -39,6 +45,19 @@ class Util {
         // often found that things are not truly loaded when the loading message goes away
         browser.pause(500)
     }
+
+    customWaitUntilVisible(selector, timeourErrorMessage, untilTimeout = 10000, pollInterval = 500, visibleTimeout = 5000, isReverse = false) {
+        //let isVisible = true
+        try {
+            browser.waitUntil(() => {
+                return browser.waitForVisible(selector, visibleTimeout, isReverse) //waitForVisible uses WaitUntil which is wrong
+            }, untilTimeout, timeourErrorMessage, pollInterval)
+        } catch (e) {
+            console.log('Cannot Wait no More: ' + e)
+        }
+    }
+
+    //cutomWaitUntilClickable(){}
 
 }
 

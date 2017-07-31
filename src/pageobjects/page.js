@@ -12,7 +12,7 @@ class Page {
     }
 
     open(path = '') {
-        console.log('Opening to: ' + path)
+        console.log('Opening path to: ' + path)
         browser.url('/' + path)
     }
 

@@ -2,10 +2,21 @@
 
 class NewCollectionGalleryDialogMap {
 
-    get createDialog() { return '#Dialog_ClcGal_Create' }
-    get nameInput() { return `${this.createDialog} input[type="Text"]` }
-    get permissionSelect() { return `${this.createDialog} > form > fieldset.visibility > select` }
-    get submit() { return `${this.createDialog} div button.submit.f_right` }
+    get createDialog() {
+        return '#Dialog_ClcGal_Create'
+    }
+
+    get nameInput() {
+        return `${this.createDialog} input[type="Text"]`
+    }
+
+    get permissionSelect() {
+        return `${this.createDialog} > form > fieldset.visibility > select`
+    }
+
+    get submit() {
+        return `${this.createDialog} div button.submit.f_right`
+    }
 
     get embeddedPermission() {
         return {
