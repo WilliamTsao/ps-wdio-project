@@ -7,7 +7,9 @@
     "scripts": {
         "test": "wdio wdio.conf.local.js",
         "test-sauce": "wdio wdio.conf.sauce.js",
-        "test-bs": "wdio wdio.conf.browserstack.js"
+        "test-bs": "wdio wdio.conf.browserstack.js",
+        "repl-chrome": "wdio repl chrome",
+        "lint": "eslint -c .eslintrc.yml ./src"
     },
     "repository": {
         "type": "git",
