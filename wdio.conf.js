@@ -32,7 +32,7 @@ exports.config = {
     // and 30 processes will get spawned. The property handles how many capabilities
     // from the same test should run tests.
     //
-    maxInstances: 8,
+    maxInstances: 1,
     //
     // If you have trouble getting all important capabilities together, check out the
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
@@ -119,7 +119,7 @@ exports.config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: http://webdriver.io/guide/testrunner/reporters.html
-    reporters: ['json'],
+    reporters: ['json', 'spec'],
     reporterOptions: {
         outputDir: './logs'
     },
@@ -168,8 +168,6 @@ exports.config = {
         var chai = require('chai')
         global.expect = chai.expect
         chai.Should()
-        // browser.windowHandleSize({width: 1600, height: 768})
-        // browser.windowHandleMaximize()
     },
     /**
      * Hook that gets executed before the suite starts
