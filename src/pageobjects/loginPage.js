@@ -1,7 +1,7 @@
 'use strict'
 var Page = require('./page')
 const UiMap = require('../uimap/loginMap')
-const MUHome = require('./MUHome')
+const muHome = require('./muHome')
 
 
 // make env.var
@@ -28,7 +28,7 @@ class LoginPage extends Page {
         browser.setValue(uimap.username, validUsername)
         browser.setValue(uimap.password, validPassword)
         browser.click(uimap.submit)
-        return MUHome
+        return muHome
     }
 }
 

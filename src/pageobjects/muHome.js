@@ -2,7 +2,7 @@
 var Page = require('./page')
 const UiMap = require('../uimap/MUHomeMap')
 const uiMap = new UiMap()
-const LibrisLibrary = require('./librisPage')
+const LibrisLibrary = require('./librisLibrary')
 
 class MUHome extends Page {
 

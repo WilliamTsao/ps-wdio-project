@@ -11,12 +11,19 @@ class CollectionInfo extends Page{
         }, 5000, 'Collection Info is not loaded after 5s')
     }
 
-    delete(){
+    delete(collectionName){
         browser.click(uimap.trashCan)
+        if(this.waitForDelete()){
+            return true
+        }else{
+            console.log(`Delete of ${collectionName} was not successful`)
+            return false
+        }
+
     }
 
     waitForDelete(){
-        browser.waitForVisible(uimap.deleteNotifier)
+        return browser.waitForVisible(uimap.deleteNotifier)
     }
 
     setDescription(description){
@@ -36,7 +43,7 @@ class CollectionInfo extends Page{
         browser.keys(newCollectionName)
         browser.click(uimap.collectionName.checkmark)
     }
-    
+
     getName(){
         console.log(browser.getText(uimap.collectionName.content))
         return browser.getText(uimap.collectionName.content)

@@ -3,7 +3,7 @@ var Page = require('./page')
 const LeftPane = require('./libraryLeftPane')
 const RightPane = require('./libraryRightPane')
 
-class Libris extends Page {
+class LibrisLibrary extends Page {
 
     open() {
         super.open('mu/libris/images/')
@@ -26,4 +26,4 @@ class Libris extends Page {
 
 }
 
-module.exports = new Libris()
+module.exports = new LibrisLibrary()

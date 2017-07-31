@@ -2,9 +2,9 @@
 var Page = require('./page')
 const LeftPaneUiMap = require('../uimap/libraryLeftPaneMap')
 const NewCollectionGalleryDialog = require('./newCollectionGalleryDialog')
-const Util = require('../util/util')
 const uimap = new LeftPaneUiMap()
-const util = new Util()
+
+const collectionInfo = require('./collectionInfo')
 
 class LibraryLeftPane extends Page {
 
@@ -13,7 +13,7 @@ class LibraryLeftPane extends Page {
     }
 
     createNewCollection(collectionName, isEmbedded = false, collectionPermission) {
-        console.log('Creating new collection: ' + collectionName) 
+        console.log('Creating new collection: ' + collectionName)
         browser.click(uimap.newCollection)
         NewCollectionGalleryDialog.newCollectionGallery(collectionName, isEmbedded, collectionPermission)
         var isNewCollectionCreated = this.visibleInLeftpane(collectionName)
@@ -21,18 +21,31 @@ class LibraryLeftPane extends Page {
         return isNewCollectionCreated
     }
 
-    visibleInLeftpane(collectionName) {
-        var isVisibleInLeftPane = true
+    createNestecCollection(collectionName, collectionPermission, parent='parent'){
+        // isEmbedded should always be true b/c you are creating a nested collection
+        const isEmbedded = true
+        let parentIsSelected = this.selectCollectionOrGalleryByName(parent)
+        if(!parentIsSelected){
+            console.log('Cannot create collection inside '+parent)
+            return false
+        }
+        return this.createNewCollection(collectionName, isEmbedded, collectionPermission)
+    }
+
+    visibleInLeftpane(collectionOrGalleryName, click=false) {
+        let isVisibleInLeftPane = true
         browser.refresh()
 
         if (this.isLoaded()) {
             console.log('Number of items in LeftPane: ' + browser.$$(uimap.topLevelListItems).length)
-            var collection = browser.$$(uimap.topLevelListItems).find(function(ele) {
-                console.log('collectionName: ' + collectionName + ', Actual: ' + ele.getText('a'))
-                console.log('Object of Type: ' + typeof ele.getText('a'))
-                return ele.getText('a') === collectionName
+            let collectionOrGallery = browser.$$(uimap.topLevelListItems).find(function(ele) {
+                console.log('collectionOrGalleryName: ' + collectionOrGalleryName + ', Actual: ' + ele.getText('a'))
+                return ele.getText('a') === collectionOrGalleryName
             })
-            if (!collection) {
+            if (collectionOrGallery) {
+                // if click is true, select the found element
+                if(click){collectionOrGallery.click()}
+            }else{
                 isVisibleInLeftPane = false
             }
         }
@@ -40,27 +53,11 @@ class LibraryLeftPane extends Page {
         return isVisibleInLeftPane
     }
 
-    selectParent(){
-        console.log('Selecting parent - of what? Who knows. This is not clear in the test')
-        console.log('However I imagine this is somewhat magical and can be explained.')
-        return this.selectCollectionOrGalleryByName('parent')
-    }
-
-    selectCollectionOrGalleryByName(collectionName) {
-        browser.refresh()
-        this.isLoaded().should.be.true
-        util.waitForLoadingToComplete()
-        console.log(browser.$$(uimap.topLevelListItems).length)
-        const result = browser.$$(uimap.topLevelListItems).find(function(ele) {
-            console.log('collectionName: ' + collectionName + ', ' + ele.getText('a'))
-            console.log('Object of Type: ' + typeof ele.getText('a'))
-            return ele.getText('a') === collectionName
-        })
-        console.log('selectCollectionOrGalleryByName: ' + result)
-        if (result) {
-            result.click()
-            return true
-        } else {
+    selectCollectionOrGalleryByName(collectionOrGalleryName) {
+        let elementIsFound = this.visibleInLeftpane(collectionOrGalleryName, true)
+        if(elementIsFound){
+            return collectionInfo.isLoaded(collectionOrGalleryName)
+        }else{
             return false
         }
     }
