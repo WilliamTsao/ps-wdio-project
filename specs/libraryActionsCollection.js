@@ -23,17 +23,17 @@ describe('Create Collection', function() {
         collectionName = util.randomString()
     })
 
-    // it('with "no one but me" permission', function() {
-    //     libraryLeftPane.createNewCollection(collectionName, false, 'No one but me').should.be.true
-    // })
-    //
-    // it('with "those with permission" permission', function() {
-    //     libraryLeftPane.createNewCollection(collectionName, false, 'Those with permission').should.be.true
-    // })
-    //
-    // it('with "everyone" permission', function() {
-    //     libraryLeftPane.createNewCollection(collectionName, false, 'Everyone').should.be.true
-    // })
+    it('with "no one but me" permission', function() {
+        libraryLeftPane.createNewCollection(collectionName, false, 'No one but me').should.be.true
+    })
+
+    it('with "those with permission" permission', function() {
+        libraryLeftPane.createNewCollection(collectionName, false, 'Those with permission').should.be.true
+    })
+
+    it('with "everyone" permission', function() {
+        libraryLeftPane.createNewCollection(collectionName, false, 'Everyone').should.be.true
+    })
 
     it('create nested collection with "inherited" permission', function() {
         libraryLeftPane.createNestecCollection(collectionName, 'inherited').should.be.true
