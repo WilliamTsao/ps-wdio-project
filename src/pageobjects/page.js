@@ -16,19 +16,21 @@ class Page {
         browser.url('/' + path)
     }
 
-    isLoaded(essentials, timeout = 5000, pollInterval = 500) {
-
+    isLoaded(essentials, timeout = 20000, pollInterval = 500) {
+        let loaded = true
         for (const key in essentials) {
-            let loaded = true
+
             try {
                 browser.waitUntil(() => {
+                    console.log('isLoaded waiting for key: ' + key)
                     return $(essentials[key]).isVisible()
                 }, timeout, `${key} is still not visible after ${timeout}s`, pollInterval)
             } catch (e) {
+                console.log('ERROR: ' + e)
                 loaded = false
             }
-            return loaded
         }
+        return loaded
     }
 
     newSession() {
