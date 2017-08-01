@@ -1,4 +1,4 @@
-var merge = require('deepmerge');
+var merge = require('deepmerge')
 var parentConf = require('./wdio.conf.js')
 
 exports.config = merge(parentConf.config, {
