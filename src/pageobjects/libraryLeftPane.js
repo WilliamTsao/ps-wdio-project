@@ -12,6 +12,26 @@ class LibraryLeftPane extends Page {
         return super.isLoaded(uimap.isLoaded)
     }
 
+    createNewGallery(galleryName, isEmbedded = false, galleryPermission){
+        console.log('Creating new gallery: ' + galleryName)
+        browser.click(uimap.newCollection)
+        NewCollectionGalleryDialog.newCollectionGallery(galleryName, isEmbedded, galleryPermission)
+        let isNewGalleryCreated = this.visibleInLeftpane(galleryName)
+        console.log('isNewGalleryCreated: ' + isNewGalleryCreated)
+        return isNewGalleryCreated
+    }
+
+    createNestecGallery(galleryName, galleryPermission, parent='parent'){
+        // isEmbedded should always be true b/c you are creating a nested collection
+        let isEmbedded = true
+        let parentIsSelected = this.selectCollectionOrGalleryByName(parent)
+        if(!parentIsSelected){
+            console.log('Cannot create collection inside '+parent)
+            return false
+        }
+        return this.createNewCollection(galleryName, isEmbedded, galleryPermission)
+    }
+
     createNewCollection(collectionName, isEmbedded = false, collectionPermission) {
         console.log('Creating new collection: ' + collectionName)
         browser.click(uimap.newCollection)
