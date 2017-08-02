@@ -23,7 +23,7 @@ class LibraryLeftPane extends Page {
 
     createNestecCollection(collectionName, collectionPermission, parent='parent'){
         // isEmbedded should always be true b/c you are creating a nested collection
-        const isEmbedded = true
+        let isEmbedded = true
         let parentIsSelected = this.selectCollectionOrGalleryByName(parent)
         if(!parentIsSelected){
             console.log('Cannot create collection inside '+parent)
