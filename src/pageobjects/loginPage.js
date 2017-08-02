@@ -5,8 +5,8 @@ const muHome = require('./muHome')
 
 
 // make env.var
-var validUsername = 'tsao+wdio@photoshelter.com'
-var validPassword = 'testingPassword'
+const validUsername = process.env.LIBRIS_USERNAME
+const validPassword = process.env.LIBRIS_PASSWORD
 
 const uimap = new UiMap()
 
