@@ -1,5 +1,5 @@
 'use strict'
-var Page = require('./page')
+let Page = require('./page')
 const NewCollectionGalleryDialogMap = require('../uimap/newCollectionGalleryDialogMap')
 const uimap = new NewCollectionGalleryDialogMap()
 
@@ -22,12 +22,12 @@ class NewCollectionGalleryDialog extends Page {
 
     // Problem here is it doesn't return anything
     // I can't track it
-    // tracking with var success
+    // tracking with let success
     setPermission(isEmbedded, permission) {
-        var success = true
+        let success = true
         if (!isEmbedded) {
             success = browser.execute((select, permissionCode) => {
-                var element = document.querySelector(select)
+                let element = document.querySelector(select)
                 element.value = permissionCode
                 return element.value === permissionCode
             }, uimap.permissionSelect, uimap.permissionOptions(permission))

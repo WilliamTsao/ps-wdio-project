@@ -1,5 +1,5 @@
-var merge = require('deepmerge')
-var parentConf = require('./wdio.conf.js')
+let merge = require('deepmerge')
+let parentConf = require('./wdio.conf.js')
 // Saucelabs has a Platform Generator so you don't have to
 // https://wiki.saucelabs.com/display/DOCS/Platform+Configurator#/
 exports.config = merge(parentConf.config, {

@@ -1,5 +1,5 @@
 'use strict'
-var Page = require('./page')
+let Page = require('./page')
 const LeftPaneUiMap = require('../uimap/libraryLeftPaneMap')
 const NewCollectionGalleryDialog = require('./newCollectionGalleryDialog')
 const uimap = new LeftPaneUiMap()
@@ -16,7 +16,7 @@ class LibraryLeftPane extends Page {
         console.log('Creating new collection: ' + collectionName)
         browser.click(uimap.newCollection)
         NewCollectionGalleryDialog.newCollectionGallery(collectionName, isEmbedded, collectionPermission)
-        var isNewCollectionCreated = this.visibleInLeftpane(collectionName)
+        let isNewCollectionCreated = this.visibleInLeftpane(collectionName)
         console.log('isNewCollectionCreated: ' + isNewCollectionCreated)
         return isNewCollectionCreated
     }

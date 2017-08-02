@@ -1,10 +1,9 @@
 'use strict'
-var Page = require('./page')
+let Page = require('./page')
 const UiMap = require('../uimap/loginMap')
 const muHome = require('./muHome')
 
 
-// make env.var
 const validUsername = process.env.LIBRIS_USERNAME
 const validPassword = process.env.LIBRIS_PASSWORD
 
@@ -14,7 +13,7 @@ class LoginPage extends Page {
 
     open() {
         super.open('login')
-        var isLoginLoaded = this.isLoaded()
+        let isLoginLoaded = this.isLoaded()
         console.log('isLoaded ' + isLoginLoaded)
         return isLoginLoaded
     }

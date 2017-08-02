@@ -1,5 +1,5 @@
 'use strict'
-var Page = require('./page')
+let Page = require('./page')
 const CollectionInfoUiMap = require('../uimap/collectionInfoMap')
 const uimap = new CollectionInfoUiMap()
 
