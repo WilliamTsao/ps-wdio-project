@@ -26,23 +26,23 @@ describe('Create Gallery', function() {
     it('with "no one but me" permission', function() {
         libraryLeftPane.createNewGallery(galleryName, false, 'No one but me').should.be.true
     })
-    //
-    // it('with "those with permission" permission', function() {
-    //     libraryLeftPane.createNewGallery(galleryName, false, 'Those with permission').should.be.true
-    // })
-    //
-    // it('with "everyone" permission', function() {
-    //     libraryLeftPane.createNewGallery(galleryName, false, 'Everyone').should.be.true
-    // })
-    //
-    // it('create nested collection with "inherited" permission', function() {
-    //     libraryLeftPane.createNewGallery(galleryName, 'inherited').should.be.true
-    // })
-    //
-    // it('create nested collection with NOT inherited permission', function() {
-    //     libraryLeftPane.createNewGallery(galleryName, 'use different settings').should.be.true
-    // })
-    //
+
+    it('with "those with permission" permission', function() {
+        libraryLeftPane.createNewGallery(galleryName, false, 'Those with permission').should.be.true
+    })
+
+    it('with "everyone" permission', function() {
+        libraryLeftPane.createNewGallery(galleryName, false, 'Everyone').should.be.true
+    })
+
+    it('create nested collection with "inherited" permission', function() {
+        libraryLeftPane.createNestecGallery(galleryName, 'inherited').should.be.true
+    })
+
+    it('create nested collection with NOT inherited permission', function() {
+        libraryLeftPane.createNestecGallery(galleryName, 'use different settings').should.be.true
+    })
+
     afterEach(function() {
         libraryLeftPane.selectCollectionOrGalleryByName(galleryName, false).should.be.true
         galleryInfo.delete(galleryName).should.be.true
