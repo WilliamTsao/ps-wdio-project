@@ -5,18 +5,19 @@ const uimap = new GalleryInfoUiMap()
 
 class GalleryInfo extends Page{
 
-    isLoaded(collectionName){
+    isLoaded(galleryName){
         return browser.waitUntil(()=>{
-            return super.isLoaded(uimap.isLoaded) && browser.getText(uimap.collectionName.content) === collectionName
-        }, 5000, 'Collection Info is not loaded after 5s')
+            return super.isLoaded(uimap.isLoaded) && browser.getText(uimap.galleryName.content) === galleryName
+        }, 5000, 'Gallery Info is not loaded after 5s')
     }
 
-    delete(collectionName){
+    delete(galleryName){
         browser.click(uimap.trashCan)
+        browser.click(uimap.delete)
         if(this.waitForDelete()){
             return true
         }else{
-            console.log(`Delete of ${collectionName} was not successful`)
+            console.log(`Delete of ${galleryName} was not successful`)
             return false
         }
 
@@ -38,15 +39,15 @@ class GalleryInfo extends Page{
         return browser.getText(uimap.description.content)
     }
 
-    rename(newCollectionName){
-        browser.click(uimap.collectionName.textarea)
-        browser.keys(newCollectionName)
-        browser.click(uimap.collectionName.checkmark)
+    rename(newgalleryName){
+        browser.click(uimap.galleryName.textarea)
+        browser.keys(newgalleryName)
+        browser.click(uimap.galleryName.checkmark)
     }
 
     getName(){
-        console.log(browser.getText(uimap.collectionName.content))
-        return browser.getText(uimap.collectionName.content)
+        console.log(browser.getText(uimap.galleryName.content))
+        return browser.getText(uimap.galleryName.content)
     }
 }
 

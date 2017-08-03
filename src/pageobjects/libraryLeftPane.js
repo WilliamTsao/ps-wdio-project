@@ -5,6 +5,7 @@ const NewCollectionGalleryDialog = require('./newCollectionGalleryDialog')
 const uimap = new LeftPaneUiMap()
 
 const collectionInfo = require('./collectionInfo')
+const galleryInfo = require('./galleryInfo')
 
 class LibraryLeftPane extends Page {
 
@@ -14,7 +15,7 @@ class LibraryLeftPane extends Page {
 
     createNewGallery(galleryName, isEmbedded = false, galleryPermission){
         console.log('Creating new gallery: ' + galleryName)
-        browser.click(uimap.newCollection)
+        browser.click(uimap.newGallery)
         NewCollectionGalleryDialog.newCollectionGallery(galleryName, isEmbedded, galleryPermission)
         let isNewGalleryCreated = this.visibleInLeftpane(galleryName)
         console.log('isNewGalleryCreated: ' + isNewGalleryCreated)
@@ -26,10 +27,10 @@ class LibraryLeftPane extends Page {
         let isEmbedded = true
         let parentIsSelected = this.selectCollectionOrGalleryByName(parent)
         if(!parentIsSelected){
-            console.log('Cannot create collection inside '+parent)
+            console.log('Cannot create gallery inside '+parent)
             return false
         }
-        return this.createNewCollection(galleryName, isEmbedded, galleryPermission)
+        return this.createNewGallery(galleryName, isEmbedded, galleryPermission)
     }
 
     createNewCollection(collectionName, isEmbedded = false, collectionPermission) {
@@ -59,8 +60,19 @@ class LibraryLeftPane extends Page {
         if (this.isLoaded()) {
             console.log('Number of items in LeftPane: ' + browser.$$(uimap.topLevelListItems).length)
             let collectionOrGallery = browser.$$(uimap.topLevelListItems).find(function(ele) {
-                console.log('collectionOrGalleryName: ' + collectionOrGalleryName + ', Actual: ' + ele.getText('a'))
-                return ele.getText('a') === collectionOrGalleryName
+                let eleIsGal = ele.getAttribute('class').split(' ')[0] === 'gal'
+                console.log(`eleIsGal: ${eleIsGal}`)
+                let currentEleName
+                if(eleIsGal){
+                    let nameWithItemCount = ele.getText('a')
+                    let indexOfItemCount = nameWithItemCount.lastIndexOf(ele.getText('a span'))
+                    currentEleName = nameWithItemCount.slice(0, indexOfItemCount)
+                }else{
+                    currentEleName = ele.getText('a')
+                }
+
+                console.log('collectionOrGalleryName: ' + collectionOrGalleryName + ', Actual: ' + currentEleName)
+                return currentEleName === collectionOrGalleryName
             })
             if (collectionOrGallery) {
                 // if click is true, select the found element
@@ -73,10 +85,14 @@ class LibraryLeftPane extends Page {
         return isVisibleInLeftPane
     }
 
-    selectCollectionOrGalleryByName(collectionOrGalleryName) {
+    selectCollectionOrGalleryByName(collectionOrGalleryName, isCollection=true) {
         let elementIsFound = this.visibleInLeftpane(collectionOrGalleryName, true)
         if(elementIsFound){
-            return collectionInfo.isLoaded(collectionOrGalleryName)
+            if(isCollection){
+                return collectionInfo.isLoaded(collectionOrGalleryName)
+            }else{
+                return galleryInfo.isLoaded(collectionOrGalleryName)
+            }
         }else{
             return false
         }

@@ -43,9 +43,9 @@ describe('Create Gallery', function() {
     //     libraryLeftPane.createNewGallery(galleryName, 'use different settings').should.be.true
     // })
     //
-    // afterEach(function() {
-    //     libraryLeftPane.selectCollectionOrGalleryByName(galleryName).should.be.true
-    //     galleryInfo.delete(galleryName).should.be.true
-    //     page.newSession()
-    // })
+    afterEach(function() {
+        libraryLeftPane.selectCollectionOrGalleryByName(galleryName, false).should.be.true
+        galleryInfo.delete(galleryName).should.be.true
+        page.newSession()
+    })
 })
