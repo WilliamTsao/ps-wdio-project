@@ -58,15 +58,14 @@ class LibraryLeftPane extends Page {
         browser.refresh()
 
         if (this.isLoaded()) {
+            
             console.log('Number of items in LeftPane: ' + browser.$$(uimap.topLevelListItems).length)
-            let collectionOrGallery = browser.$$(uimap.topLevelListItems).find(function(ele) {
+            let collectionOrGallery = browser.$$(uimap.topLevelListItems).find((ele) => {
                 let eleIsGal = ele.getAttribute('class').split(' ')[0] === 'gal'
                 console.log(`eleIsGal: ${eleIsGal}`)
                 let currentEleName
                 if(eleIsGal){
-                    let nameWithItemCount = ele.getText('a')
-                    let indexOfItemCount = nameWithItemCount.lastIndexOf(ele.getText('a span'))
-                    currentEleName = nameWithItemCount.slice(0, indexOfItemCount)
+                    currentEleName = this.getCleanGalleryName(ele)
                 }else{
                     currentEleName = ele.getText('a')
                 }
@@ -96,6 +95,14 @@ class LibraryLeftPane extends Page {
         }else{
             return false
         }
+    }
+
+    getCleanGalleryName(galleryElement){
+        let nameWithItemCount = galleryElement.getText('a')
+        let indexOfItemCount = nameWithItemCount.lastIndexOf(galleryElement.getText('a span'))
+        let cleanGalName = nameWithItemCount.slice(0, indexOfItemCount)
+        console.log(`Clean Gallery Name: ${cleanGalName}`)
+        return cleanGalName
     }
 
 }
