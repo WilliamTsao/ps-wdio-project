@@ -25,7 +25,7 @@ class LibraryLeftPane extends Page {
     createNestecGallery(galleryName, galleryPermission, parent='parent'){
         // isEmbedded should always be true b/c you are creating a nested collection
         let isEmbedded = true
-        let parentIsSelected = this.selectCollectionOrGalleryByName(parent)
+        let parentIsSelected = this.selectCollectionByName(parent)
         if(!parentIsSelected){
             console.log('Cannot create gallery inside '+parent)
             return false
@@ -45,7 +45,7 @@ class LibraryLeftPane extends Page {
     createNestecCollection(collectionName, collectionPermission, parent='parent'){
         // isEmbedded should always be true b/c you are creating a nested collection
         let isEmbedded = true
-        let parentIsSelected = this.selectCollectionOrGalleryByName(parent)
+        let parentIsSelected = this.selectCollectionByName(parent)
         if(!parentIsSelected){
             console.log('Cannot create collection inside '+parent)
             return false
@@ -56,9 +56,7 @@ class LibraryLeftPane extends Page {
     visibleInLeftpane(collectionOrGalleryName, click=false) {
         let isVisibleInLeftPane = true
         browser.refresh()
-
         if (this.isLoaded()) {
-            
             console.log('Number of items in LeftPane: ' + browser.$$(uimap.topLevelListItems).length)
             let collectionOrGallery = browser.$$(uimap.topLevelListItems).find((ele) => {
                 let eleIsGal = ele.getAttribute('class').split(' ')[0] === 'gal'
@@ -84,17 +82,14 @@ class LibraryLeftPane extends Page {
         return isVisibleInLeftPane
     }
 
-    selectCollectionOrGalleryByName(collectionOrGalleryName, isCollection=true) {
-        let elementIsFound = this.visibleInLeftpane(collectionOrGalleryName, true)
-        if(elementIsFound){
-            if(isCollection){
-                return collectionInfo.isLoaded(collectionOrGalleryName)
-            }else{
-                return galleryInfo.isLoaded(collectionOrGalleryName)
-            }
-        }else{
-            return false
-        }
+    selectCollectionByName(collectionName) {
+        let elementIsFound = this.visibleInLeftpane(collectionName, true)
+        return elementIsFound && collectionInfo.isLoaded(collectionName)
+    }
+
+    selectGalleryByName(galleryName) {
+        let elementIsFound = this.visibleInLeftpane(galleryName, true)
+        return elementIsFound && galleryInfo.isLoaded(galleryName)
     }
 
     getCleanGalleryName(galleryElement){
