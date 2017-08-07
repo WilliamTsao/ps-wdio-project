@@ -35,6 +35,11 @@ class Page {
 
     newSession() {
         this.open('logout')
+        let cookies = browser.getCookie()
+        cookies.forEach((cookie)=>{
+            browser.deleteCookie(cookie.name)
+        })
+        
     }
 }
 
