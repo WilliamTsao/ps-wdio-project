@@ -7,7 +7,7 @@ const retryFlaky = 5
 
 describe('Library Actions: Gallery', function() {
 
-    describe.skip('Create Gallery', function() {
+    describe('Create Gallery', function() {
         let galleryName, libraryRightPane, galleryInfo, libraryLeftPane
 
         this.retries(retryFlaky)

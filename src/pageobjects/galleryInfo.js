@@ -44,7 +44,7 @@ class GalleryInfo extends Page{
                 console.log(`Current name is: ${currentName}; Expected to be: ${newGalleryName}`)
                 renameSuccessful = currentName === newGalleryName
             }else{
-                console.log('Gallary Inspector is not loaded after rename')
+                console.log('Gallery Inspector is not loaded after rename')
                 renameSuccessful = false
             }
         }else{

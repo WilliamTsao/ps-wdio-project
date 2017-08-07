@@ -2,15 +2,17 @@
 
 class GalleryInfoMap {
 
-    get inspectorName() { return '#GalleryInspector'}
+    get inspector() { return '#GalleryInspector'}
 
-    get trashCan() { return '#GalleryInspector li.delete.f_right button' }
-    get removeFromCollection() { return '#GalleryInspector li.delete.f_right li:nth-child(1)' }
-    get delete() {return '#GalleryInspector li.delete.f_right li:nth-child(2)' }
+    get trashCan() { return `${this.inspector} li.delete.f_right` }
+    get removeFromCollection() { return `${this.trashCan} li:nth-child(1)` }
+    get delete() {return `${this.trashCan} li:nth-child(2)` }
 
     get galleryName() {
         return {
-            textarea: 'form.G_NAME',
+            form: 'form.G_NAME',
+            edit: 'form.G_NAME a.edit',
+            input: 'form.G_NAME input[type="text"]',
             checkmark: 'form.G_NAME a.save',
             content: 'form.G_NAME div.ceShow'
         }
@@ -19,7 +21,7 @@ class GalleryInfoMap {
     get isLoaded() {
         return {
             GalleryTrashCan: this.trashCan,
-            galleryName: this.galleryName.textarea
+            galleryName: this.galleryName.form
         }
     }
 }
