@@ -31,6 +31,29 @@ class GalleryInfo extends Page{
         console.log('Gallery Name: ' + galname)
         return galname
     }
+
+    rename(originalGalleryName, newGalleryName){
+        let renameSuccessful = true
+        if(this.isLoaded(originalGalleryName)){
+            browser.moveToObject(uimap.galleryName.form)
+            browser.click(uimap.galleryName.edit)
+            browser.setValue(uimap.galleryName.input, newGalleryName)
+            browser.click(uimap.galleryName.checkmark)
+            if(this.isLoaded(newGalleryName)){
+                let currentName = this.getName()
+                console.log(`Current name is: ${currentName}; Expected to be: ${newGalleryName}`)
+                renameSuccessful = currentName === newGalleryName
+            }else{
+                console.log('Gallary Inspector is not loaded after rename')
+                renameSuccessful = false
+            }
+        }else{
+            console.log(`gallery inspector is not loaded for ${originalGalleryName}`)
+            renameSuccessful = false
+        }
+        return renameSuccessful
+    }
+
 }
 
 module.exports = new GalleryInfo()
