@@ -44,7 +44,7 @@ describe('Create Collection', function() {
     })
 
     afterEach(function() {
-        libraryLeftPane.selectCollectionOrGalleryByName(collectionName).should.be.true
+        libraryLeftPane.selectCollectionByName(collectionName).should.be.true
         collectionInfo.delete(collectionName).should.be.true
         page.newSession()
     })

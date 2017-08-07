@@ -45,7 +45,7 @@ describe('Library Actions: Gallery', function() {
         })
 
         afterEach(function() {
-            libraryLeftPane.selectCollectionOrGalleryByName(galleryName, false).should.be.true
+            libraryLeftPane.selectGalleryByName(galleryName).should.be.true
             galleryInfo.delete(galleryName).should.be.true
             page.newSession()
         })
@@ -71,7 +71,7 @@ describe('Library Actions: Gallery', function() {
             newGalleryName = util.randomString()
         })
         it('should be able to rename gallery', function(){
-            libraryLeftPane.selectCollectionOrGalleryByName(originalGalleryName, false).should.be.true
+            libraryLeftPane.selectGalleryByName(originalGalleryName).should.be.true
             galleryInfo.rename(originalGalleryName, newGalleryName).should.be.true
         })
         afterEach(function() {
