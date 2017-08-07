@@ -34,7 +34,7 @@ class Page {
     }
 
     newSession() {
-        browser.reload()
+        this.open('logout')
     }
 }
 

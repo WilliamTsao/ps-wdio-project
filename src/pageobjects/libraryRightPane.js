@@ -1,6 +1,7 @@
 'use strict'
 let Page = require('./page')
-const CollectionInfo = require('../pageobjects/collectionInfo')
+const CollectionInfo = require('./collectionInfo')
+const GalleryInfo = require('./galleryInfo')
 
 class LibraryRightPane extends Page {
 
@@ -13,6 +14,10 @@ class LibraryRightPane extends Page {
 
     getCollectionInfo() {
         return CollectionInfo
+    }
+
+    getGalleryInfo() {
+        return GalleryInfo
     }
 
 }
