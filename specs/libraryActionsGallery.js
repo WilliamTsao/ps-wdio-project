@@ -6,8 +6,8 @@ const LoginPage = require('../src/pageobjects/LoginPage')
 const retryFlaky = 5
 
 describe('Library Actions: Gallery', function() {
-    
-    describe('Create Gallery', function() {
+
+    describe.skip('Create Gallery', function() {
         let galleryName, libraryRightPane, galleryInfo, libraryLeftPane
 
         this.retries(retryFlaky)
@@ -47,6 +47,35 @@ describe('Library Actions: Gallery', function() {
         afterEach(function() {
             libraryLeftPane.selectCollectionOrGalleryByName(galleryName, false).should.be.true
             galleryInfo.delete(galleryName).should.be.true
+            page.newSession()
+        })
+    })
+
+    describe('Rename Gallery', function(){
+        let originalGalleryName, newGalleryName, galleryInfo, libraryLeftPane, libraryRightPane
+
+        this.retries(retryFlaky)
+
+        beforeEach(function() {
+            LoginPage.open().should.be.true
+            const muHome = LoginPage.submitValidLogin()
+            muHome.open().should.be.true
+
+            const librisLibrary = muHome.getLibrisLibrary()
+            librisLibrary.open().should.be.true
+            libraryLeftPane = librisLibrary.getLibraryLeftPane()
+            libraryRightPane = librisLibrary.getLibraryRightPane()
+            galleryInfo = libraryRightPane.getGalleryInfo()
+            originalGalleryName = util.randomString()
+            libraryLeftPane.createNewGallery(originalGalleryName).should.be.true
+            newGalleryName = util.randomString()
+        })
+        it('should be able to rename gallery', function(){
+            libraryLeftPane.selectCollectionOrGalleryByName(originalGalleryName, false).should.be.true
+            galleryInfo.rename(originalGalleryName, newGalleryName).should.be.true
+        })
+        afterEach(function() {
+            galleryInfo.delete(newGalleryName).should.be.true
             page.newSession()
         })
     })
