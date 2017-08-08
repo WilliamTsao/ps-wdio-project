@@ -8,9 +8,8 @@ const retryFlaky = 5
 describe('Library Actions: Gallery', function() {
 
     describe('Create Gallery', function() {
-        let galleryName, libraryRightPane, galleryInfo, libraryLeftPane
-
         this.retries(retryFlaky)
+        let galleryName, libraryRightPane, galleryInfo, libraryLeftPane
 
         beforeEach(function() {
             LoginPage.open().should.be.true
@@ -52,9 +51,8 @@ describe('Library Actions: Gallery', function() {
     })
 
     describe('Rename Gallery', function(){
-        let originalGalleryName, newGalleryName, galleryInfo, libraryLeftPane, libraryRightPane
-
         this.retries(retryFlaky)
+        let originalGalleryName, newGalleryName, galleryInfo, libraryLeftPane, libraryRightPane
 
         beforeEach(function() {
             LoginPage.open().should.be.true

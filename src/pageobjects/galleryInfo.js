@@ -35,8 +35,7 @@ class GalleryInfo extends Page{
     rename(originalGalleryName, newGalleryName){
         let renameSuccessful = true
         if(this.isLoaded(originalGalleryName)){
-            browser.moveToObject(uimap.galleryName.form)
-            browser.click(uimap.galleryName.edit)
+            browser.click(uimap.galleryName.form)
             browser.setValue(uimap.galleryName.input, newGalleryName)
             browser.click(uimap.galleryName.checkmark)
             if(this.isLoaded(newGalleryName)){

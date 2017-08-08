@@ -11,7 +11,6 @@ class GalleryInfoMap {
     get galleryName() {
         return {
             form: 'form.G_NAME',
-            edit: 'form.G_NAME a.edit',
             input: 'form.G_NAME input[type="text"]',
             checkmark: 'form.G_NAME a.save',
             content: 'form.G_NAME div.ceShow'
