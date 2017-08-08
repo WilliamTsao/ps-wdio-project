@@ -11,6 +11,12 @@ class Util {
         console.log(`Random String Created: ${result}`)
         return result
     }
+    deleteAllCookies(){
+        let cookies = browser.getCookie()
+        cookies.forEach((cookie)=>{
+            browser.deleteCookie(cookie.name)
+        })
+    }
 
 }
 

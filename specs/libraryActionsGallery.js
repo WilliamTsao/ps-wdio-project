@@ -3,12 +3,12 @@ const page = new Page()
 const Util = require('../src/util/util')
 const util = new Util()
 const LoginPage = require('../src/pageobjects/LoginPage')
-const retryFlaky = 5
+const RETRY_Flaky = 5
 
 describe('Library Actions: Gallery', function() {
 
     describe('Create Gallery', function() {
-        this.retries(retryFlaky)
+        this.retries(RETRY_Flaky)
         let galleryName, libraryRightPane, galleryInfo, libraryLeftPane
 
         beforeEach(function() {
@@ -51,7 +51,7 @@ describe('Library Actions: Gallery', function() {
     })
 
     describe('Rename Gallery', function(){
-        this.retries(retryFlaky)
+        this.retries(RETRY_Flaky)
         let originalGalleryName, newGalleryName, galleryInfo, libraryLeftPane, libraryRightPane
 
         beforeEach(function() {
