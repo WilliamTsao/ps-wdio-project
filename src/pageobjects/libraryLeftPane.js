@@ -99,6 +99,10 @@ class LibraryLeftPane extends Page {
         console.log(`Clean Gallery Name: ${cleanGalName}`)
         return cleanGalName
     }
+    selectRoot(){
+        browser.click(uimap.libraryRoot)
+        return this.isLoaded()
+    }
 
 }
 

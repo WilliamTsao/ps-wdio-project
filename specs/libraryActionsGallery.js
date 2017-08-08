@@ -65,6 +65,7 @@ describe('Library Actions: Gallery', function() {
             libraryRightPane = librisLibrary.getLibraryRightPane()
             galleryInfo = libraryRightPane.getGalleryInfo()
             originalGalleryName = util.randomString()
+            libraryLeftPane.selectRoot().should.be.true
             libraryLeftPane.createNewGallery(originalGalleryName).should.be.true
             newGalleryName = util.randomString()
         })
