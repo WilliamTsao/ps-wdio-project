@@ -46,7 +46,6 @@ class GalleryInfo extends Page{
     }
 
     setDescription(description){
-        console.log('AYYYYYYYYYYYYYYYY')
         browser.click(uimap.description.tab)
         browser.click(uimap.description.form)
         browser.setValue(uimap.description.input, description)

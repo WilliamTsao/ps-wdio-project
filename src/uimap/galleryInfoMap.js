@@ -31,7 +31,8 @@ class GalleryInfoMap {
     get isLoaded() {
         return {
             GalleryTrashCan: this.trashCan,
-            galleryName: this.galleryName.form
+            galleryName: this.galleryName.form,
+            descriptionTab: this.description.tab
         }
     }
 }
