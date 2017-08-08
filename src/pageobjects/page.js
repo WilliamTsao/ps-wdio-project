@@ -1,4 +1,6 @@
 'use strict'
+const Util = require('../uitl/util')
+const util = new Util()
 
 class Page {
     constructor() {
@@ -35,11 +37,7 @@ class Page {
 
     newSession() {
         this.open('logout')
-        let cookies = browser.getCookie()
-        cookies.forEach((cookie)=>{
-            browser.deleteCookie(cookie.name)
-        })
-        
+        util.deleteAllCookies()
     }
 }
 
