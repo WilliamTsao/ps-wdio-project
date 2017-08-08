@@ -63,7 +63,6 @@ describe('Library Actions: Gallery', function() {
             librisLibrary.open().should.be.true
             libraryLeftPane = librisLibrary.getLibraryLeftPane()
             libraryRightPane = librisLibrary.getLibraryRightPane()
-            galleryInfo = libraryRightPane.getGalleryInfo()
             originalGalleryName = util.randomString()
             libraryLeftPane.selectRoot().should.be.true
             libraryLeftPane.createNewGallery(originalGalleryName).should.be.true
@@ -71,6 +70,7 @@ describe('Library Actions: Gallery', function() {
         })
         it('should be able to rename gallery', function(){
             libraryLeftPane.selectGalleryByName(originalGalleryName).should.be.true
+            galleryInfo = libraryRightPane.getGalleryInfo()
             galleryInfo.rename(originalGalleryName, newGalleryName).should.be.true
         })
         afterEach(function() {
