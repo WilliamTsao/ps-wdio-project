@@ -45,6 +45,25 @@ class GalleryInfo extends Page{
         return this.isLoaded(newGalleryName)
     }
 
+    setDescription(description){
+        console.log('AYYYYYYYYYYYYYYYY')
+        browser.click(uimap.description.tab)
+        browser.click(uimap.description.form)
+        browser.setValue(uimap.description.input, description)
+        browser.click(uimap.description.checkmark)
+        if(!this.isLoaded(this.getName())) return false
+        let currentDescription = this.getDescription()
+        console.log('Description:')
+        console.log(`current: ${currentDescription}; expected: ${description}`)
+        return currentDescription === description
+    }
+
+    getDescription(){
+        let description = browser.getText(uimap.description.content)
+        console.log(`Gallery Description: ${description}`)
+        return description
+    }
+
 }
 
 module.exports = new GalleryInfo()

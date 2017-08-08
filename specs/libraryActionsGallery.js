@@ -3,12 +3,12 @@ const page = new Page()
 const Util = require('../src/util/util')
 const util = new Util()
 const LoginPage = require('../src/pageobjects/LoginPage')
-const retryFlaky = 5
+const RETRY_Flaky = 5
 
 describe('Library Actions: Gallery', function() {
 
     describe('Create Gallery', function() {
-        this.retries(retryFlaky)
+        this.retries(RETRY_Flaky)
         let galleryName, libraryRightPane, galleryInfo, libraryLeftPane
 
         beforeEach(function() {
@@ -51,7 +51,7 @@ describe('Library Actions: Gallery', function() {
     })
 
     describe('Rename Gallery', function(){
-        this.retries(retryFlaky)
+        this.retries(RETRY_Flaky)
         let originalGalleryName, newGalleryName, galleryInfo, libraryLeftPane, libraryRightPane
 
         beforeEach(function() {
@@ -75,6 +75,29 @@ describe('Library Actions: Gallery', function() {
         })
         afterEach(function() {
             galleryInfo.delete(newGalleryName).should.be.true
+            page.newSession()
+        })
+    })
+
+    describe.only('Set Gallery Description', function(){
+        this.retries(RETRY_Flaky)
+        let librisLibrary
+        const EXISTING_GALLERY_NAME = 'setDescription'
+        beforeEach(function(){
+            LoginPage.open().should.be.true
+            const muHome = LoginPage.submitValidLogin()
+            muHome.open().should.be.true
+            librisLibrary = muHome.getLibrisLibrary()
+            librisLibrary.open().should.be.true
+        })
+        it('should be able to set gallery description', function(){
+            const libraryLeftPane = librisLibrary.getLibraryLeftPane()
+            libraryLeftPane.selectGalleryByName(EXISTING_GALLERY_NAME).should.be.true
+            const galleryInfo = librisLibrary.getLibraryRightPane().getGalleryInfo()
+            const description = util.randomString()
+            galleryInfo.setDescription(description).should.be.true
+        })
+        afterEach(function(){
             page.newSession()
         })
     })

@@ -1,5 +1,5 @@
 'use strict'
-const Util = require('../uitl/util')
+const Util = require('../util/util')
 const util = new Util()
 
 class Page {
