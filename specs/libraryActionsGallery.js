@@ -9,17 +9,15 @@ describe('Library Actions: Gallery', function() {
 
     describe('Create Gallery', function() {
         this.retries(RETRY_Flaky)
-        let galleryName, libraryRightPane, galleryInfo, libraryLeftPane
+        let muHome, librisLibrary, libraryLeftPane, galleryName, galleryInfo
 
         beforeEach(function() {
             LoginPage.open().should.be.true
-            const muHome = LoginPage.submitValidLogin()
+            muHome = LoginPage.submitValidLogin()
             muHome.open().should.be.true
-            const librisLibrary = muHome.getLibrisLibrary()
+            librisLibrary = muHome.getLibrisLibrary()
             librisLibrary.open().should.be.true
-            libraryRightPane = librisLibrary.getLibraryRightPane()
             libraryLeftPane = librisLibrary.getLibraryLeftPane()
-            galleryInfo = libraryRightPane.getGalleryInfo()
             galleryName = util.randomString()
         })
 
@@ -45,6 +43,7 @@ describe('Library Actions: Gallery', function() {
 
         afterEach(function() {
             libraryLeftPane.selectGalleryByName(galleryName).should.be.true
+            galleryInfo = librisLibrary.getLibraryRightPane().getGalleryInfo()
             galleryInfo.delete(galleryName).should.be.true
             page.newSession()
         })
@@ -52,25 +51,23 @@ describe('Library Actions: Gallery', function() {
 
     describe('Rename Gallery', function(){
         this.retries(RETRY_Flaky)
-        let originalGalleryName, newGalleryName, galleryInfo, libraryLeftPane, libraryRightPane
+        let muHome, librisLibrary, libraryLeftPane, originalGalleryName, newGalleryName, galleryInfo
 
         beforeEach(function() {
             LoginPage.open().should.be.true
-            const muHome = LoginPage.submitValidLogin()
+            muHome = LoginPage.submitValidLogin()
             muHome.open().should.be.true
-
-            const librisLibrary = muHome.getLibrisLibrary()
+            librisLibrary = muHome.getLibrisLibrary()
             librisLibrary.open().should.be.true
             libraryLeftPane = librisLibrary.getLibraryLeftPane()
-            libraryRightPane = librisLibrary.getLibraryRightPane()
-            originalGalleryName = util.randomString()
             libraryLeftPane.selectRoot().should.be.true
+            originalGalleryName = util.randomString()
             libraryLeftPane.createNewGallery(originalGalleryName).should.be.true
-            newGalleryName = util.randomString()
         })
         it('should be able to rename gallery', function(){
             libraryLeftPane.selectGalleryByName(originalGalleryName).should.be.true
-            galleryInfo = libraryRightPane.getGalleryInfo()
+            galleryInfo = librisLibrary.getLibraryRightPane().getGalleryInfo()
+            newGalleryName = util.randomString()
             galleryInfo.rename(originalGalleryName, newGalleryName).should.be.true
         })
         afterEach(function() {
@@ -79,22 +76,22 @@ describe('Library Actions: Gallery', function() {
         })
     })
 
-    describe.only('Set Gallery Description', function(){
+    describe('Set Gallery Description', function(){
         this.retries(RETRY_Flaky)
-        let librisLibrary
+        let muHome, librisLibrary, libraryLeftPane, galleryInfo, description
         const EXISTING_GALLERY_NAME = 'setDescription'
         beforeEach(function(){
             LoginPage.open().should.be.true
-            const muHome = LoginPage.submitValidLogin()
+            muHome = LoginPage.submitValidLogin()
             muHome.open().should.be.true
             librisLibrary = muHome.getLibrisLibrary()
             librisLibrary.open().should.be.true
         })
         it('should be able to set gallery description', function(){
-            const libraryLeftPane = librisLibrary.getLibraryLeftPane()
+            libraryLeftPane = librisLibrary.getLibraryLeftPane()
             libraryLeftPane.selectGalleryByName(EXISTING_GALLERY_NAME).should.be.true
-            const galleryInfo = librisLibrary.getLibraryRightPane().getGalleryInfo()
-            const description = util.randomString()
+            galleryInfo = librisLibrary.getLibraryRightPane().getGalleryInfo()
+            description = util.randomString()
             galleryInfo.setDescription(description).should.be.true
         })
         afterEach(function(){

@@ -23,11 +23,11 @@ exports.config = merge(parentConf.config, {
         'platform': 'macOS 10.12',
         'version': '59.0',
         'screenResolution': '1024x768'
-    // }, {
-    //     'browserName': 'MicrosoftEdge',
-    //     'platform': 'Windows 10',
-    //     'version': '15.15063',
-    //     'screenResolution': '1024x768'
+    }, {
+        'browserName': 'MicrosoftEdge',
+        'platform': 'Windows 10',
+        'version': '15.15063',
+        'screenResolution': '1024x768'
     }, {
         'browserName': 'chrome',
         'platform': 'Windows 10',
