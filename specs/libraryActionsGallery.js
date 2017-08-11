@@ -10,7 +10,7 @@ describe('Library Actions: Gallery', function() {
     describe('Create Gallery', function() {
         this.retries(RETRY_Flaky)
         let muHome, librisLibrary, libraryLeftPane, galleryName, galleryInfo
-
+        
         beforeEach(function() {
             LoginPage.open().should.be.true
             muHome = LoginPage.submitValidLogin()
