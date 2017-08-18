@@ -5,12 +5,12 @@ const util = new Util()
 const LoginPage = require('../src/pageobjects/LoginPage')
 const RETRY_Flaky = 5
 
-describe('Library Actions: Gallery', function() {
+describe.skip('Library Actions: Gallery', function() {
 
     describe('Create Gallery', function() {
         this.retries(RETRY_Flaky)
         let muHome, librisLibrary, libraryLeftPane, galleryName, galleryInfo
-        
+
         beforeEach(function() {
             LoginPage.open().should.be.true
             muHome = LoginPage.submitValidLogin()

@@ -17,6 +17,9 @@ class Util {
             browser.deleteCookie(cookie.name)
         })
     }
+    randomRating(){
+        return Math.floor(Math.random()*5+1)
+    }
 
 }
 
