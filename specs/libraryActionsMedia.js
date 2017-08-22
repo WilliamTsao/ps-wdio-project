@@ -34,43 +34,43 @@ describe('Library Actions: Media', function() {
         it('Rate an image', function() {
             galleryBrowser.selectImageByName(RATE_IMAGE).should.be.true
             imageInfo = librisLibrary.getLibraryRightPane().getImageInfo()
-            // imageInfo.rate(rating).should.be.true
+            imageInfo.rate(rating).should.be.true
         })
-        // it('Reject a rating on an image', function() {
-        //     galleryBrowser.selectImageByName(RATE_IMAGE).should.be.true
-        //     imageInfo = librisLibrary.getLibraryRightPane().getImageInfo()
-        //     imageInfo.rejectRate().should.be.true
-        // })
-        // it('Rate an video', function() {
-        //     galleryBrowser.selectVideoByName(RATE_VIDEO).should.be.true
-        //     videoInfo = librisLibrary.getLibraryRightPane().getImageInfo()
-        //     videoInfo.rate(rating).should.be.true
-        // })
-        // it('Reject a rating on an video', function() {
-        //     galleryBrowser.selectVideoByName(RATE_VIDEO).should.be.true
-        //     videoInfo = librisLibrary.getLibraryRightPane().getImageInfo()
-        //     videoInfo.rejectRate().should.be.true
-        // })
-        // it('Rate an audio', function() {
-        //     galleryBrowser.selectAudioByName(RATE_AUDIO).should.be.true
-        //     audioInfo = librisLibrary.getLibraryRightPane().getImageInfo()
-        //     audioInfo.rate(rating).should.be.true
-        // })
-        // it('Reject a rating on an audio', function() {
-        //     galleryBrowser.selectAudioByName(RATE_AUDIO).should.be.true
-        //     audioInfo = librisLibrary.getLibraryRightPane().getImageInfo()
-        //     audioInfo.rejectRate().should.be.true
-        // })
-        // it('Rate an file', function() {
-        //     galleryBrowser.selectFileByName(RATE_FILE).should.be.true
-        //     fileInfo = librisLibrary.getLibraryRightPane().getImageInfo()
-        //     fileInfo.rate(rating).should.be.true
-        // })
-        // it('Reject a rating on an file', function() {
-        //     galleryBrowser.selectFileByName(RATE_FILE).should.be.true
-        //     fileInfo = librisLibrary.getLibraryRightPane().getImageInfo()
-        //     fileInfo.rejectRate().should.be.true
-        // })
+        it('Reject a rating on an image', function() {
+            galleryBrowser.selectImageByName(RATE_IMAGE).should.be.true
+            imageInfo = librisLibrary.getLibraryRightPane().getImageInfo()
+            imageInfo.rejectRate().should.be.true
+        })
+        it('Rate an video', function() {
+            galleryBrowser.selectVideoByName(RATE_VIDEO).should.be.true
+            videoInfo = librisLibrary.getLibraryRightPane().getVideoInfo()
+            videoInfo.rate(rating).should.be.true
+        })
+        it('Reject a rating on an video', function() {
+            galleryBrowser.selectVideoByName(RATE_VIDEO).should.be.true
+            videoInfo = librisLibrary.getLibraryRightPane().getVideoInfo()
+            videoInfo.rejectRate().should.be.true
+        })
+        it('Rate an audio', function() {
+            galleryBrowser.selectAudioByName(RATE_AUDIO).should.be.true
+            audioInfo = librisLibrary.getLibraryRightPane().getAudioInfo()
+            audioInfo.rate(rating).should.be.true
+        })
+        it('Reject a rating on an audio', function() {
+            galleryBrowser.selectAudioByName(RATE_AUDIO).should.be.true
+            audioInfo = librisLibrary.getLibraryRightPane().getAudioInfo()
+            audioInfo.rejectRate().should.be.true
+        })
+        it('Rate an file', function() {
+            galleryBrowser.selectFileByName(RATE_FILE).should.be.true
+            fileInfo = librisLibrary.getLibraryRightPane().getFileInfo()
+            fileInfo.rate(rating).should.be.true
+        })
+        it('Reject a rating on an file', function() {
+            galleryBrowser.selectFileByName(RATE_FILE).should.be.true
+            fileInfo = librisLibrary.getLibraryRightPane().getFileInfo()
+            fileInfo.rejectRate().should.be.true
+        })
 
         afterEach(function() {
             page.newSession()
