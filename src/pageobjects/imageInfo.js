@@ -12,10 +12,8 @@ class ImageInfo extends Page{
         return browser.waitUntil(()=>{
             let domLoaded = super.isLoaded(uimap.isLoaded)
             let currentName = this.getName()
+            console.log(`Current Name: ${currentName}, Expected Name: ${imageName}`)
             let nameMatches = currentName === imageName
-            if(nameMatches){
-                console.log(`Current Name: ${currentName}; Expected Name: ${imageName}`)
-            }
             return domLoaded && nameMatches
         }, 5000, 'image info is not loaded after 5s')
     }

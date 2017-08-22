@@ -13,10 +13,8 @@ class AudioInfo extends Page{
         return browser.waitUntil(()=>{
             let domLoaded = super.isLoaded(uimap.isLoaded)
             let currentName = this.getName()
+            console.log(`Current Name: ${currentName}; Expected Name: ${audioName}`)
             let nameMatches = currentName === audioName
-            if(nameMatches){
-                console.log(`Current Name: ${currentName}; Expected Name: ${audioName}`)
-            }
             return domLoaded && nameMatches
         }, 5000, 'audio info is not loaded after 5s')
     }

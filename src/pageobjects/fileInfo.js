@@ -13,10 +13,8 @@ class FileInfo extends Page{
         return browser.waitUntil(()=>{
             let domLoaded = super.isLoaded(uimap.isLoaded)
             let currentName = this.getName()
+            console.log(`Current Name: ${currentName}; Expected Name: ${fileName}`)
             let nameMatches = currentName === fileName
-            if(nameMatches){
-                console.log(`Current Name: ${currentName}; Expected Name: ${fileName}`)
-            }
             return domLoaded && nameMatches
         }, 5000, 'file info is not loaded after 5s')
     }

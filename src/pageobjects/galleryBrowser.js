@@ -28,16 +28,19 @@ class GalleryBrowser extends Page {
 
     selectImageByName(imgName){
         let imageInfo = require('./imageInfo')
-        return this.selectItemByName(imgName, 'IMAGE') && imageInfo.isLoaded()
+        return this.selectItemByName(imgName, 'IMAGE') && imageInfo.isLoaded(imgName)
     }
     selectVideoByName(videoName){
-        return this.selectItemByName(videoName, 'VIDEO')
+        let videoInfo = require('./videoInfo')
+        return this.selectItemByName(videoName, 'VIDEO') && videoInfo.isLoaded(videoName)
     }
     selectAudioByName(audioName){
-        return this.selectItemByName(audioName, 'AUDIO')
+        let audioInfo = require('./audioInfo')
+        return this.selectItemByName(audioName, 'AUDIO') && audioInfo.isLoaded(audioName)
     }
     selectFileByName(docName){
-        return this.selectItemByName(docName, 'DOC')
+        let fileInfo = require('./fileInfo')
+        return this.selectItemByName(docName, 'DOC') && fileInfo.isLoaded(docName)
     }
 
 }

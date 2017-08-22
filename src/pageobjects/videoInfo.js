@@ -12,10 +12,8 @@ class VideoInfo extends Page{
         return browser.waitUntil(()=>{
             let domLoaded = super.isLoaded(uimap.isLoaded)
             let currentName = this.getName()
+            console.log(`Current Name: ${currentName}; Expected Name: ${videoName}`)
             let nameMatches = currentName === videoName
-            if(nameMatches){
-                console.log(`Current Name: ${currentName}; Expected Name: ${videoName}`)
-            }
             return domLoaded && nameMatches
         }, 5000, 'video info is not loaded after 5s')
     }
