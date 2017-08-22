@@ -9,8 +9,6 @@ class ImageInfoMap {
     get inspector() { return '#ImageInspector'}
 
     get isLoaded() {
-        console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
-        console.log(this.mediaSharedUimap.isLoaded.mediaName)
         return Object.assign(this.mediaSharedUimap.isLoaded)
     }
 }

@@ -8,10 +8,11 @@ class MediaInfo{
     }
 
     getName(){
-        return this.uimap.mediaName.content
+        return $(this.uimap.mediaName.content).getText()
     }
 
     rate(index){
+        console.log(`Selecting ${index} star`)
         browser.click(this.uimap.star(index))
         return this.numStarsSelected() === index
     }
@@ -32,13 +33,15 @@ class MediaInfo{
 
     numStarsSelected(){
         let stars = this.uimap.stars
-        return stars.fileter(function(ele){
+        let numStarOn = stars.filter(function(ele){
             return $(ele).getAttribute('class').split(' ').includes('starOn')
         }).length
+        console.log(`Number of Stars with class starOn: ${numStarOn}`)
+        return numStarOn
     }
 
     isRejectSeleted(){
-        return this.uimap.rejectRate.getAttribute('class').split(' ').include('negOn')
+        return $(this.uimap.rejectRate).getAttribute('class').split(' ').includes('negOn')
     }
 
 }

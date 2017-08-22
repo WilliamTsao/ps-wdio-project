@@ -24,7 +24,7 @@ class Page {
 
             try {
                 browser.waitUntil(() => {
-                    console.log('isLoaded waiting for key: ' + key + ' selector: '+ essentials[key])
+                    console.log('isLoaded waiting for key: ' + key)
                     return $(essentials[key]).isVisible()
                 }, timeout, `${key} is still not visible after ${timeout}s`, pollInterval)
             } catch (e) {
