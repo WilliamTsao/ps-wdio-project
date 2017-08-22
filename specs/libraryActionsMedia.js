@@ -16,7 +16,7 @@ const RATE_FILE = 'fileToBeRated'
 describe('Library Actions: Media', function() {
 
     describe('Rate a media file', function() {
-        // this.retries(RETRY_Flaky)
+        this.retries(RETRY_Flaky)
         let muHome, librisLibrary, libraryLeftPane, galleryBrowser, rating, imageInfo, videoInfo, audioInfo, fileInfo
 
         beforeEach(function() {
