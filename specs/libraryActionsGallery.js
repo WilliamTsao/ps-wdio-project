@@ -68,7 +68,7 @@ describe.skip('Library Actions: Gallery', function() {
             libraryLeftPane.selectGalleryByName(originalGalleryName).should.be.true
             galleryInfo = librisLibrary.getLibraryRightPane().getGalleryInfo()
             newGalleryName = util.randomString()
-            galleryInfo.rename(originalGalleryName, newGalleryName).should.be.true
+            galleryInfo.rename(newGalleryName).should.be.true
         })
         afterEach(function() {
             galleryInfo.delete(newGalleryName).should.be.true

@@ -38,7 +38,7 @@ class GalleryInfo extends Page{
         return galname
     }
 
-    rename(originalGalleryName, newGalleryName){
+    rename(newGalleryName){
         browser.click(uimap.galleryName.form)
         browser.setValue(uimap.galleryName.input, newGalleryName)
         browser.click(uimap.galleryName.checkmark)
