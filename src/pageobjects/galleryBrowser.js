@@ -10,7 +10,7 @@ class GalleryBrowser extends Page {
     }
 
     selectItemByName(itemName, itemType){
-        browser.refresh()
+        // browser.refresh()
         let found = true
         let itemNames = $$(uimap.itemNames(itemType))
         console.log(`Number of ${itemType} in Center Pane: ${itemNames.length}`)
