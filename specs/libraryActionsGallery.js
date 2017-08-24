@@ -5,7 +5,7 @@ const util = new Util()
 const LoginPage = require('../src/pageobjects/LoginPage')
 const RETRY_FLAKY = 5
 
-describe('Library Actions: Gallery', function() {
+describe.skip('Library Actions: Gallery', function() {
 
     describe('Create Gallery', function() {
         this.retries(RETRY_FLAKY)
