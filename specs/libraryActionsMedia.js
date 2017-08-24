@@ -12,10 +12,14 @@ const RATE_VIDEO = 'videoToBeRated'
 const RATE_AUDIO = 'audioToBeRated'
 const RATE_FILE = 'fileToBeRated'
 
+const RENAME_IMAGE = 'imageToBeRenamed'
+const RENAME_VIDEO = 'videoToBeRenamed'
+const RENAME_AUDIO = 'audioToBeRenamed'
+const RENAME_FILE = 'fileToBeRenamed'
 
 describe('Library Actions: Media', function() {
 
-    describe('Rate a media file', function() {
+    describe.skip('Rate a media file', function() {
         this.retries(RETRY_FLAKY)
         let muHome, librisLibrary, libraryLeftPane, galleryBrowser, rating, imageInfo, videoInfo, audioInfo, fileInfo
 
@@ -72,7 +76,7 @@ describe('Library Actions: Media', function() {
             fileInfo = librisLibrary.getLibraryRightPane().getFileInfo()
             fileInfo.rate(rating).should.be.true
         })
-        
+
         it('Reject a rating on an file', function() {
             galleryBrowser.selectFileByName(RATE_FILE).should.be.true
             fileInfo = librisLibrary.getLibraryRightPane().getFileInfo()
@@ -80,6 +84,77 @@ describe('Library Actions: Media', function() {
         })
 
         afterEach(function() {
+            page.newSession()
+        })
+    })
+
+
+    describe('Rename a media file', function() {
+        this.retries(RETRY_FLAKY)
+        let muHome, librisLibrary, libraryLeftPane, galleryBrowser, newName, imageInfo, videoInfo, audioInfo, fileInfo
+        let counter = 0
+        beforeEach(function() {
+            LoginPage.open().should.be.true
+            muHome = LoginPage.submitValidLogin()
+            muHome.open().should.be.true
+            librisLibrary = muHome.getLibrisLibrary()
+            librisLibrary.open().should.be.true
+            libraryLeftPane = librisLibrary.getLibraryLeftPane()
+            libraryLeftPane.selectGalleryByName(MEDIA_CONTAINER).should.be.true
+            galleryBrowser = librisLibrary.getLibraryCenterPane().getGalleryBrowser()
+            newName = util.randomString()
+        })
+
+        it('Rename an image', function() {
+            galleryBrowser.selectImageByName(RENAME_IMAGE).should.be.true
+            imageInfo = librisLibrary.getLibraryRightPane().getImageInfo()
+            imageInfo.rename(newName).should.be.true
+        })
+
+        it('Rename an video', function() {
+            galleryBrowser.selectVideoByName(RENAME_VIDEO).should.be.true
+            videoInfo = librisLibrary.getLibraryRightPane().getVideoInfo()
+            videoInfo.rename(newName).should.be.true
+        })
+
+        it('Rename an audio', function() {
+            galleryBrowser.selectAudioByName(RENAME_AUDIO).should.be.true
+            audioInfo = librisLibrary.getLibraryRightPane().getAudioInfo()
+            audioInfo.rename(newName).should.be.true
+        })
+
+        it('Rename an file', function() {
+            galleryBrowser.selectFileByName(RENAME_FILE).should.be.true
+            fileInfo = librisLibrary.getLibraryRightPane().getFileInfo()
+            fileInfo.rename(newName).should.be.true
+        })
+
+        afterEach(function() {
+            //change it back!!!
+            console.log('Counter: '+counter)
+            switch(counter++){
+                case 0:
+                    galleryBrowser.selectImageByName(newName).should.be.true
+                    imageInfo = librisLibrary.getLibraryRightPane().getImageInfo()
+                    imageInfo.rename(RENAME_IMAGE).should.be.true
+                    break
+                case 1:
+                    galleryBrowser.selectVideoByName(newName).should.be.true
+                    videoInfo = librisLibrary.getLibraryRightPane().getVideoInfo()
+                    videoInfo.rename(RENAME_VIDEO).should.be.true
+                    break
+                case 2:
+                    galleryBrowser.selectAudioByName(newName).should.be.true
+                    audioInfo = librisLibrary.getLibraryRightPane().getAudioInfo()
+                    audioInfo.rename(RENAME_AUDIO).should.be.true
+                    break
+                case 3:
+                    galleryBrowser.selectFileByName(newName).should.be.true
+                    fileInfo = librisLibrary.getLibraryRightPane().getFileInfo()
+                    fileInfo.rename(RENAME_FILE).should.be.true
+                    break
+            }
+
             page.newSession()
         })
     })
