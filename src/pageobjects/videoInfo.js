@@ -29,6 +29,10 @@ class VideoInfo extends Page{
     rejectRate(){
         return mediaInfo.rejectRate()
     }
+    rename(newName){
+        mediaInfo.rename(newName)
+        return this.isLoaded(newName)
+    }
 
 }
 

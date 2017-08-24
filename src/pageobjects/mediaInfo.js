@@ -49,5 +49,10 @@ class MediaInfo{
         return correct
     }
 
+    rename(newName){
+        browser.click(this.uimap.mediaName.form)
+        browser.setValue(this.uimap.mediaName.input, newName)
+        browser.click(this.uimap.mediaName.checkmark)
+    }
 }
 module.exports = MediaInfo
