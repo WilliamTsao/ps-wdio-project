@@ -18,17 +18,8 @@ class MediaInfo{
     }
 
     rejectRate(){
-        let success = true
         browser.click(this.uimap.rejectRate)
-        if(!this.numStarsSelected() === 0){
-            console.log('Number of stars selected is NOT zero')
-            success = false
-        }
-        if(!this.isRejectSeleted()){
-            console.log('Reject rating is NOT selected')
-            success = false
-        }
-        return success
+        return this.noStarSelected() && this.rejectSeleted()
     }
 
     numStarsSelected(){
@@ -40,8 +31,22 @@ class MediaInfo{
         return numStarOn
     }
 
-    isRejectSeleted(){
-        return $(this.uimap.rejectRate).getAttribute('class').split(' ').includes('negOn')
+    noStarSelected(){
+        let correct = true
+        if(this.numStarsSelected() !== 0){
+            console.log('Number of stars selected is NOT zero')
+            correct = false
+        }
+        return correct
+    }
+
+    rejectSeleted(){
+        let correct = true
+        if(!$(this.uimap.rejectRate).getAttribute('class').split(' ').includes('negOn')){
+            console.log('Reject rating icon is NOT selected')
+            correct = false
+        }
+        return correct
     }
 
 }
