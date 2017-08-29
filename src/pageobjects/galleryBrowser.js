@@ -4,9 +4,11 @@ const GalleryBrowserUiMap = require('../uimap/GalleryBrowserMap')
 const uimap = new GalleryBrowserUiMap()
 
 class GalleryBrowser extends Page {
+
     isLoaded() {
         return super.isLoaded(uimap.isLoaded)
     }
+
     selectItemByName(itemName, itemType){
         let found = true
         let itemNames = $$(uimap.itemNames(itemType))
@@ -16,7 +18,6 @@ class GalleryBrowser extends Page {
             return ele.getText() === itemName
         })
         if(item){
-            //try catch around the click ??
             console.log(`Selecting ${itemName}...`)
             item.click()
         }else{
@@ -30,19 +31,21 @@ class GalleryBrowser extends Page {
         let imageInfo = require('./imageInfo')
         return this.selectItemByName(imgName, 'IMAGE') && imageInfo.isLoaded(imgName)
     }
+
     selectVideoByName(videoName){
         let videoInfo = require('./videoInfo')
         return this.selectItemByName(videoName, 'VIDEO') && videoInfo.isLoaded(videoName)
     }
+
     selectAudioByName(audioName){
         let audioInfo = require('./audioInfo')
         return this.selectItemByName(audioName, 'AUDIO') && audioInfo.isLoaded(audioName)
     }
+
     selectFileByName(docName){
         let fileInfo = require('./fileInfo')
         return this.selectItemByName(docName, 'DOC') && fileInfo.isLoaded(docName)
     }
-
 }
 
 module.exports = new GalleryBrowser()
