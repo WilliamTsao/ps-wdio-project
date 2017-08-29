@@ -3,13 +3,13 @@ const page = new Page()
 const Util = require('../src/util/util')
 const util = new Util()
 const LoginPage = require('../src/pageobjects/LoginPage')
-const RETRY_Flaky = 5
+const RETRY_FLAKY = 5
 
 
 describe('Create Collection', function() {
     let collectionName, libraryRightPane, collectionInfo, libraryLeftPane
 
-    this.retries(RETRY_Flaky)
+    this.retries(RETRY_FLAKY)
 
     beforeEach(function() {
         LoginPage.open().should.be.true
