@@ -30,10 +30,14 @@ class AudioInfo extends Page{
     rejectRate(){
         return mediaInfo.rejectRate()
     }
-    
+
     rename(newName){
         mediaInfo.rename(newName)
         return this.isLoaded(newName)
+    }
+    
+    getType(){
+        return uimap.inspector.replace('Inspector', '').slice(1).toUpperCase()
     }
 
 }

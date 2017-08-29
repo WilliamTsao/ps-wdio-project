@@ -33,6 +33,9 @@ class VideoInfo extends Page{
         mediaInfo.rename(newName)
         return this.isLoaded(newName)
     }
+    getType(){
+        return uimap.inspector.replace('Inspector', '').slice(1).toUpperCase()
+    }
 
 }
 
