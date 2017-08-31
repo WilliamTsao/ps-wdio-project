@@ -50,7 +50,14 @@ class MediaInfo{
     }
 
     rename(newName){
-        browser.click(this.uimap.mediaName.form)
+        $(this.uimap.mediaName.content).click()
+        browser.waitUntil(()=>{
+            let inputIsVisible = $(this.uimap.mediaName.input).isVisible()
+            console.log('input is visible: ', inputIsVisible)
+            let checkmarkIsVisible = $(this.uimap.mediaName.checkmark).isVisible()
+            console.log('checkmark is visible: ', checkmarkIsVisible)
+            return inputIsVisible && checkmarkIsVisible
+        })
         browser.setValue(this.uimap.mediaName.input, newName)
         browser.click(this.uimap.mediaName.checkmark)
     }
