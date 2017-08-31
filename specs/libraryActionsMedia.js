@@ -106,7 +106,7 @@ describe('Library Actions: Media', function() {
             newName = util.randomString()
         })
 
-        it('Rename an image', function() {
+        it('should allow me to rename an image', function() {
             imageInfo = librisLibrary.getLibraryRightPane().getImageInfo()
             galleryBrowser.selectImageByName(RENAME_IMAGE, imageInfo).should.be.true
             imageInfo.rename(newName).should.be.true
@@ -114,7 +114,7 @@ describe('Library Actions: Media', function() {
             currentInspector = imageInfo
         })
 
-        it('Rename an video', function() {
+        it('should allow me to rename a video', function() {
             videoInfo = librisLibrary.getLibraryRightPane().getVideoInfo()
             galleryBrowser.selectVideoByName(RENAME_VIDEO, videoInfo).should.be.true
             videoInfo.rename(newName).should.be.true
@@ -122,7 +122,7 @@ describe('Library Actions: Media', function() {
             currentInspector = videoInfo
         })
 
-        it('Rename an audio', function() {
+        it('should allow me to rename an audio', function() {
             audioInfo = librisLibrary.getLibraryRightPane().getAudioInfo()
             galleryBrowser.selectAudioByName(RENAME_AUDIO, audioInfo).should.be.true
             audioInfo.rename(newName).should.be.true
@@ -130,7 +130,7 @@ describe('Library Actions: Media', function() {
             currentInspector = audioInfo
         })
 
-        it('Rename an file', function() {
+        it('should allow me to rename an file', function() {
             fileInfo = librisLibrary.getLibraryRightPane().getFileInfo()
             galleryBrowser.selectFileByName(RENAME_FILE, fileInfo).should.be.true
             fileInfo.rename(newName).should.be.true
