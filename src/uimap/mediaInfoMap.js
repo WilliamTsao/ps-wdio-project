@@ -7,10 +7,9 @@ class MediaInfoMap {
 
     get mediaName(){
         return {
-            form: this.inspector + ' h1 form',
             input: this.inspector + ' h1 form input[type="text"]',
             checkmark: this.inspector + ' h1 form a.save',
-            content: this.inspector + ' h1 form div.ceShow'
+            content: this.inspector + ' h1 form .ceShow'
         }
     }
 
@@ -34,7 +33,7 @@ class MediaInfoMap {
 
     get isLoaded() {
         return {
-            mediaName: this.mediaName.form
+            mediaName: this.mediaName.content
         }
     }
 }
