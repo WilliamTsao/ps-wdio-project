@@ -17,24 +17,31 @@ class GalleryBrowser extends Page {
     }
 
     selectItemByName(itemName, itemInspector){
-        let found = true
+        let found = false
         if(this.isLoaded()){
-            let itemNames = $$(uimap.itemNames(itemInspector.getType()))
-            console.log(`Number of ${itemInspector.getType()} in Center Pane: ${itemNames.length}`)
-            let item = itemNames.find((ele)=>{
-                console.log(`looking for: ${itemName}; current ele name: ${ele.getText()}`)
-                return ele.getText() === itemName
-            })
+            let listOfBrowserItems = $$(uimap.itemNames(itemInspector.getType()))
+            console.log(`Number of ${itemInspector.getType()} in Center Pane: ${listOfBrowserItems.length}`)
+
+            let item = this.searchInBrowser(listOfBrowserItems, itemName)
+
             if(item){
                 console.log(`Selecting ${itemName}...`)
                 item.click()
+                found = true
             }else{
                 console.log(`A ${itemInspector.getType()} named ${itemName} was not found`)
-                found = false
             }
         }
         return found && itemInspector.isLoaded(itemName)
     }
+
+    searchInBrowser(itemList, target){
+        return itemList.find((ele)=>{
+            console.log(`looking for: ${target}; current ele name: ${ele.getText()}`)
+            return ele.getText() === target
+        })
+    }
+
 
     restoreMediaName(currentInspector, originalName, newName){
         browser.refresh()

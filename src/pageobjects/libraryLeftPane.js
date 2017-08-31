@@ -54,32 +54,36 @@ class LibraryLeftPane extends Page {
     }
 
     visibleInLeftpane(collectionOrGalleryName, click=false) {
-        let isVisibleInLeftPane = true
+        let isVisibleInLeftPane = false
         // browser.refresh()
         if (this.isLoaded()) {
-            console.log('Number of items in LeftPane: ' + browser.$$(uimap.topLevelListItems).length)
-            let collectionOrGallery = browser.$$(uimap.topLevelListItems).find((ele) => {
-                let eleIsGal = ele.getAttribute('class').split(' ')[0] === 'gal'
-                console.log(`eleIsGal: ${eleIsGal}`)
-                let currentEleName
-                if(eleIsGal){
-                    currentEleName = this.getCleanGalleryName(ele)
-                }else{
-                    currentEleName = ele.getText('a')
-                }
+            let listOfLeftPaneItems = $$(uimap.topLevelListItems)
+            console.log('Number of items in LeftPane: ' + listOfLeftPaneItems.length)
 
-                console.log('collectionOrGalleryName: ' + collectionOrGalleryName + ', Actual: ' + currentEleName)
-                return currentEleName === collectionOrGalleryName
-            })
+            let collectionOrGallery = this.searchLeftPane(listOfLeftPaneItems, collectionOrGalleryName)
+
             if (collectionOrGallery) {
-                // if click is true, select the found element
-                if(click){collectionOrGallery.click()}
-            }else{
-                isVisibleInLeftPane = false
+                isVisibleInLeftPane = true
+                if(click){ collectionOrGallery.click() }
             }
         }
-        console.log('isVisibleInLeftPane: ' + isVisibleInLeftPane)
+        console.log(collectionOrGalleryName + ' is visible in left pane: ' + isVisibleInLeftPane)
         return isVisibleInLeftPane
+    }
+
+    searchLeftPane(itemList, target){
+        return itemList.find((ele) => {
+            let currentEleName = this.getGalClcName(ele)
+            console.log('Looking For: ' + target + ', Current: ' + currentEleName)
+            return currentEleName === target
+        })
+    }
+
+    getGalClcName(ele){
+        let eleIsGal = ele.getAttribute('class').split(' ')[0] === 'gal'
+        console.log(`eleIsGal: ${eleIsGal}`)
+        let currentEleName = eleIsGal ? this.getCleanGalleryName(ele) : ele.getText('a')
+        return currentEleName
     }
 
     selectCollectionByName(collectionName) {

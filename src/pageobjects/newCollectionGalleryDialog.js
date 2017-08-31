@@ -20,25 +20,30 @@ class NewCollectionGalleryDialog extends Page {
         browser.click(uimap.submit)
     }
 
-    // Problem here is it doesn't return anything
-    // I can't track it
-    // tracking with let success
     setPermission(isEmbedded, permission) {
         let success = true
         if (!isEmbedded) {
-            success = browser.execute((select, permissionCode) => {
-                let element = document.querySelector(select)
-                element.value = permissionCode
-                return element.value === permissionCode
-            }, uimap.permissionSelect, uimap.permissionOptions(permission))
+            success = this.setRootPermission(permission)
         } else {
-            if (permission === 'use different settings') {
-                browser.click(uimap.embeddedPermission.nonInherited)
-            } else {
-                browser.click(uimap.embeddedPermission.inherited)
-            }
+            this.setEmbedPermission(permission)
         }
         return success
+    }
+
+    setRootPermission(permission) {
+        return browser.execute((select, permissionCode) => {
+            let element = document.querySelector(select)
+            element.value = permissionCode
+            return element.value === permissionCode
+        }, uimap.permissionSelect, uimap.permissionOptions(permission))
+    }
+
+    setEmbedPermission(permission) {
+        if (permission === 'use different settings') {
+            browser.click(uimap.embeddedPermission.nonInherited)
+        } else {
+            browser.click(uimap.embeddedPermission.inherited)
+        }
     }
 }
 
