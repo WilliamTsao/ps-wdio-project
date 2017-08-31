@@ -5,8 +5,17 @@ const uimap = new GalleryBrowserUiMap()
 
 class GalleryBrowser extends Page {
     isLoaded() {
-        return super.isLoaded(uimap.isLoaded)
+        return browser.waitUntil(()=>{
+            return super.isLoaded(uimap.isLoaded) && this.viewNotBusy()
+        })
     }
+
+    viewNotBusy(){
+        let viewBusy = $(`${uimap.browser} .viewBusy`).isVisible()
+        console.log(`"Loading..." is visible: ${viewBusy}`)
+        return !viewBusy
+    }
+
     selectItemByName(itemName, itemInspector){
         let found = true
         if(this.isLoaded()){
@@ -33,23 +42,19 @@ class GalleryBrowser extends Page {
         currentInspector.rename(originalName).should.be.true
     }
 
-    selectImageByName(imgName){
-        let imageInfo = require('./imageInfo')
+    selectImageByName(imgName, imageInfo){
         return this.selectItemByName(imgName, imageInfo)
     }
 
-    selectVideoByName(videoName){
-        let videoInfo = require('./videoInfo')
+    selectVideoByName(videoName, videoInfo){
         return this.selectItemByName(videoName, videoInfo)
     }
 
-    selectAudioByName(audioName){
-        let audioInfo = require('./audioInfo')
+    selectAudioByName(audioName, audioInfo){
         return this.selectItemByName(audioName, audioInfo)
     }
 
-    selectFileByName(docName){
-        let fileInfo = require('./fileInfo')
+    selectFileByName(docName, fileInfo){
         return this.selectItemByName(docName, fileInfo)
     }
 
