@@ -19,8 +19,8 @@ class GalleryInfoMap {
 
     get description() {
         return {
-            tab: `${this.inspector} > div.content.info > div:nth-child(5)`,
-            form: 'form.G_DESCRIPTION',
+            tab: `${this.inspector} > div.content.info > div:nth-child(5) h2`,
+            emptyP: `${this.inspector} > div.content.info > div:nth-child(5) > .content p`,
             input: 'form.G_DESCRIPTION textarea[name="G_DESCRIPTION"]',
             checkmark: 'form.G_DESCRIPTION a.save',
             content: 'form.G_DESCRIPTION div.ceShow'

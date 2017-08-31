@@ -10,13 +10,11 @@ const mediaInfo = new MediaInfoInterface(uimap.inspector)
 class AudioInfo extends Page{
 
     isLoaded(audioName){
-        return browser.waitUntil(()=>{
-            let domLoaded = super.isLoaded(uimap.isLoaded)
-            let currentName = this.getName()
-            console.log(`Current Name: ${currentName}; Expected Name: ${audioName}`)
-            let nameMatches = currentName === audioName
-            return domLoaded && nameMatches
-        }, 5000, 'audio info is not loaded after 5s')
+        let domLoaded = super.isLoaded(uimap.isLoaded)
+        console.log(`DOM is loaded: ${domLoaded}`)
+        let nameMatches = super.nameIsCorrect(audioName, this)
+        console.log(`Name is correct: ${nameMatches}`)
+        return domLoaded && nameMatches
     }
 
     getName(){
@@ -35,7 +33,7 @@ class AudioInfo extends Page{
         mediaInfo.rename(newName)
         return this.isLoaded(newName)
     }
-    
+
     getType(){
         return uimap.inspector.replace('Inspector', '').slice(1).toUpperCase()
     }

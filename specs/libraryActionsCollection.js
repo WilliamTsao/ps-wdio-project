@@ -6,7 +6,7 @@ const LoginPage = require('../src/pageobjects/LoginPage')
 const RETRY_FLAKY = 5
 
 
-describe.skip('Create Collection', function() {
+describe('Create Collection', function() {
     let collectionName, libraryRightPane, collectionInfo, libraryLeftPane
 
     this.retries(RETRY_FLAKY)

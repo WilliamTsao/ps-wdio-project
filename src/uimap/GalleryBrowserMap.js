@@ -3,6 +3,8 @@
 class GalleryBrowserMap{
     get browser(){return '#GalImgBrowser'}
 
+    get viewBusy(){ return `${this.browser} .viewBusy`}
+
     itemNames(itemType){
         let selector = `${this.browser} #items `
         switch(itemType){

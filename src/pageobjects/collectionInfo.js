@@ -6,9 +6,11 @@ const uimap = new CollectionInfoUiMap()
 class CollectionInfo extends Page{
 
     isLoaded(collectionName){
-        return browser.waitUntil(()=>{
-            return super.isLoaded(uimap.isLoaded) && browser.getText(uimap.collectionName.content) === collectionName
-        }, 5000, 'Collection Info is not loaded after 5s')
+        let domLoaded = super.isLoaded(uimap.isLoaded)
+        console.log(`DOM is loaded: ${domLoaded}`)
+        let nameMatches = super.nameIsCorrect(collectionName, this)
+        console.log(`Name is correct: ${nameMatches}`)
+        return domLoaded && nameMatches
     }
 
     delete(collectionName){

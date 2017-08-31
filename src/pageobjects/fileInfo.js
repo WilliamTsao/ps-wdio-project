@@ -10,13 +10,11 @@ const mediaInfo = new MediaInfoInterface(uimap.inspector)
 class FileInfo extends Page{
 
     isLoaded(fileName){
-        return browser.waitUntil(()=>{
-            let domLoaded = super.isLoaded(uimap.isLoaded)
-            let currentName = this.getName()
-            console.log(`Current Name: ${currentName}; Expected Name: ${fileName}`)
-            let nameMatches = currentName === fileName
-            return domLoaded && nameMatches
-        }, 5000, 'file info is not loaded after 5s')
+        let domLoaded = super.isLoaded(uimap.isLoaded)
+        console.log(`DOM is loaded: ${domLoaded}`)
+        let nameMatches = super.nameIsCorrect(fileName, this)
+        console.log(`Name is correct: ${nameMatches}`)
+        return domLoaded && nameMatches
     }
 
     getName(){

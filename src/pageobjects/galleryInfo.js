@@ -6,15 +6,11 @@ const uimap = new GalleryInfoUiMap()
 class GalleryInfo extends Page{
 
     isLoaded(galleryName){
-        return browser.waitUntil(()=>{
-            let domLoaded = super.isLoaded(uimap.isLoaded)
-            let currentName = this.getName()
-            let nameMatches = currentName === galleryName
-            if(nameMatches){
-                console.log(`Current Name: ${currentName}; Expected Name: ${galleryName}`)
-            }
-            return domLoaded && nameMatches
-        }, 5000, 'Gallery Info is not loaded after 5s')
+        let domLoaded = super.isLoaded(uimap.isLoaded)
+        console.log(`DOM is loaded: ${domLoaded}`)
+        let nameMatches = super.nameIsCorrect(galleryName, this)
+        console.log(`Name is correct: ${nameMatches}`)
+        return domLoaded && nameMatches
     }
 
     delete(galleryName){
@@ -39,20 +35,38 @@ class GalleryInfo extends Page{
     }
 
     rename(newGalleryName){
-        browser.click(uimap.galleryName.form)
+        browser.click(uimap.galleryName.content)
+        browser.waitUntil(()=>{
+            return this.inputAndCheckmarkVisible(uimap.galleryName)
+        })
         browser.setValue(uimap.galleryName.input, newGalleryName)
         browser.click(uimap.galleryName.checkmark)
         return this.isLoaded(newGalleryName)
     }
 
+    inputAndCheckmarkVisible(location){
+        let inputIsVisible = $(location.input).isVisible()
+        console.log('input is visible: ', inputIsVisible)
+        let checkmarkIsVisible = $(location.checkmark).isVisible()
+        console.log('checkmark is visible: ', checkmarkIsVisible)
+        return inputIsVisible && checkmarkIsVisible
+    }
+
     setDescription(description){
         browser.click(uimap.description.tab)
-        browser.click(uimap.description.form)
+        let clickEdit = $(uimap.description.emptyP).isVisible() ? $(uimap.description.emptyP):$(uimap.description.content)
+        clickEdit.click()
+        browser.waitUntil(()=>{
+            return this.inputAndCheckmarkVisible(uimap.description)
+        })
         browser.setValue(uimap.description.input, description)
         browser.click(uimap.description.checkmark)
         if(!this.isLoaded(this.getName())) return false
+        return this.validateDescription(description)
+    }
+
+    validateDescription(description){
         let currentDescription = this.getDescription()
-        console.log('Description:')
         console.log(`current: ${currentDescription}; expected: ${description}`)
         return currentDescription === description
     }

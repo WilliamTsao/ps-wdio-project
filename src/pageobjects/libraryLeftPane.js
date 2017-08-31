@@ -55,7 +55,6 @@ class LibraryLeftPane extends Page {
 
     visibleInLeftpane(collectionOrGalleryName, click=false) {
         let isVisibleInLeftPane = false
-        // browser.refresh()
         if (this.isLoaded()) {
             let listOfLeftPaneItems = $$(uimap.topLevelListItems)
             console.log('Number of items in LeftPane: ' + listOfLeftPaneItems.length)

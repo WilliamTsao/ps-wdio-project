@@ -5,15 +5,11 @@ const uimap = new GalleryBrowserUiMap()
 
 class GalleryBrowser extends Page {
     isLoaded() {
-        return browser.waitUntil(()=>{
-            return super.isLoaded(uimap.isLoaded) && this.viewNotBusy()
-        })
-    }
-
-    viewNotBusy(){
-        let viewBusy = $(`${uimap.browser} .viewBusy`).isVisible()
-        console.log(`"Loading..." is visible: ${viewBusy}`)
-        return !viewBusy
+        let loadingMsgNotVisible = super.waitForInvisible(uimap.viewBusy)
+        console.log(`"Loading..." is not visilbe: ${loadingMsgNotVisible}`)
+        let domLoaded = super.isLoaded(uimap.isLoaded)
+        console.log(`Dom is loaded: ${domLoaded}`)
+        return domLoaded && loadingMsgNotVisible
     }
 
     selectItemByName(itemName, itemInspector){

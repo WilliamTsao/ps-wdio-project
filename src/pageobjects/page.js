@@ -35,6 +35,20 @@ class Page {
         return loaded
     }
 
+    nameIsCorrect(expectedName, pageobject){
+        return browser.waitUntil(()=>{
+            let currentName = pageobject.getName()
+            console.log(`Current Name: ${currentName}; Expected Name: ${expectedName}`)
+            return currentName === expectedName
+        })
+    }
+
+    waitForInvisible(element){
+        return browser.waitUntil(()=>{
+            return !element.isVisible()
+        })
+    }
+
     newSession() {
         this.open('logout')
         util.deleteAllCookies()

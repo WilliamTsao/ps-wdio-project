@@ -20,7 +20,7 @@ const RENAME_FILE = 'fileToBeRenamed'
 
 describe('Library Actions: Media', function() {
 
-    describe.skip('Rate a media file', function() {
+    describe('Rate a media file', function() {
         this.retries(RETRY_FLAKY)
         let muHome, librisLibrary, libraryLeftPane, galleryBrowser, rating, imageInfo, videoInfo, audioInfo, fileInfo
 
@@ -36,51 +36,51 @@ describe('Library Actions: Media', function() {
             rating = util.randomRating()
         })
 
-        it('Rate an image', function() {
-            galleryBrowser.selectImageByName(RATE_IMAGE).should.be.true
+        it('should allow me to rate an image', function() {
             imageInfo = librisLibrary.getLibraryRightPane().getImageInfo()
+            galleryBrowser.selectImageByName(RATE_IMAGE, imageInfo).should.be.true
             imageInfo.rate(rating).should.be.true
         })
 
-        it('Reject a rating on an image', function() {
-            galleryBrowser.selectImageByName(RATE_IMAGE).should.be.true
+        it('should allow me to reject a rating on an image', function() {
             imageInfo = librisLibrary.getLibraryRightPane().getImageInfo()
+            galleryBrowser.selectImageByName(RATE_IMAGE, imageInfo).should.be.true
             imageInfo.rejectRate().should.be.true
         })
 
-        it('Rate an video', function() {
-            galleryBrowser.selectVideoByName(RATE_VIDEO).should.be.true
+        it('should allow me to rate a video', function() {
             videoInfo = librisLibrary.getLibraryRightPane().getVideoInfo()
+            galleryBrowser.selectVideoByName(RATE_VIDEO, videoInfo).should.be.true
             videoInfo.rate(rating).should.be.true
         })
 
-        it('Reject a rating on an video', function() {
-            galleryBrowser.selectVideoByName(RATE_VIDEO).should.be.true
+        it('should allow me to reject a rating on a video', function() {
             videoInfo = librisLibrary.getLibraryRightPane().getVideoInfo()
+            galleryBrowser.selectVideoByName(RATE_VIDEO, videoInfo).should.be.true
             videoInfo.rejectRate().should.be.true
         })
 
-        it('Rate an audio', function() {
-            galleryBrowser.selectAudioByName(RATE_AUDIO).should.be.true
+        it('should allow me to rate an audio', function() {
             audioInfo = librisLibrary.getLibraryRightPane().getAudioInfo()
+            galleryBrowser.selectAudioByName(RATE_AUDIO, audioInfo).should.be.true
             audioInfo.rate(rating).should.be.true
         })
 
-        it('Reject a rating on an audio', function() {
-            galleryBrowser.selectAudioByName(RATE_AUDIO).should.be.true
+        it('should allow me to reject a rating on an audio', function() {
             audioInfo = librisLibrary.getLibraryRightPane().getAudioInfo()
+            galleryBrowser.selectAudioByName(RATE_AUDIO, audioInfo).should.be.true
             audioInfo.rejectRate().should.be.true
         })
 
-        it('Rate an file', function() {
-            galleryBrowser.selectFileByName(RATE_FILE).should.be.true
+        it('should allow me to rate a document', function() {
             fileInfo = librisLibrary.getLibraryRightPane().getFileInfo()
+            galleryBrowser.selectFileByName(RATE_FILE, fileInfo).should.be.true
             fileInfo.rate(rating).should.be.true
         })
 
-        it('Reject a rating on an file', function() {
-            galleryBrowser.selectFileByName(RATE_FILE).should.be.true
+        it('should allow me to reject a rating on a document', function() {
             fileInfo = librisLibrary.getLibraryRightPane().getFileInfo()
+            galleryBrowser.selectFileByName(RATE_FILE, fileInfo).should.be.true
             fileInfo.rejectRate().should.be.true
         })
 
