@@ -11,27 +11,26 @@ const FileInfo = require('./fileInfo')
 
 class LibraryRightPane extends Page {
 
-    isLoaded() {
-        // The default is more than this
-        // in this case default means nothing selected
-        // True is not 'real'
-        return true
-    }
     getCollectionInfo() {
         return CollectionInfo
     }
+
     getGalleryInfo() {
         return GalleryInfo
     }
+
     getImageInfo(){
         return ImageInfo
     }
+
     getVideoInfo(){
         return VideoInfo
     }
+
     getAudioInfo(){
         return AudioInfo
     }
+
     getFileInfo(){
         return FileInfo
     }

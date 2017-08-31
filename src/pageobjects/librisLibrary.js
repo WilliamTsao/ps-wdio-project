@@ -14,7 +14,7 @@ class LibrisLibrary extends Page {
     }
 
     isLoaded() {
-        return LeftPane.isLoaded() && RightPane.isLoaded() && CenterPane.isLoaded()
+        return LeftPane.isLoaded()
     }
 
     getLibraryLeftPane() {
