@@ -6,12 +6,13 @@ const LoginPage = require('../src/pageobjects/LoginPage')
 const RETRY_FLAKY = 5
 
 //populate database with below
-const MEDIA_CONTAINER = 'galleryWithAllMedia'
+const GAL_FOR_RATING = 'galleryForRating'
 const RATE_IMAGE = 'imageToBeRated'
 const RATE_VIDEO = 'videoToBeRated'
 const RATE_AUDIO = 'audioToBeRated'
 const RATE_FILE = 'fileToBeRated'
 
+const GAL_FOR_RENAME = 'galleryForRename'
 const RENAME_IMAGE = 'imageToBeRenamed'
 const RENAME_VIDEO = 'videoToBeRenamed'
 const RENAME_AUDIO = 'audioToBeRenamed'
@@ -30,7 +31,7 @@ describe('Library Actions: Media', function() {
             librisLibrary = muHome.getLibrisLibrary()
             librisLibrary.open().should.be.true
             libraryLeftPane = librisLibrary.getLibraryLeftPane()
-            libraryLeftPane.selectGalleryByName(MEDIA_CONTAINER).should.be.true
+            libraryLeftPane.selectGalleryByName(GAL_FOR_RATING).should.be.true
             galleryBrowser = librisLibrary.getLibraryCenterPane().getGalleryBrowser()
             rating = util.randomRating()
         })
@@ -100,45 +101,45 @@ describe('Library Actions: Media', function() {
             librisLibrary = muHome.getLibrisLibrary()
             librisLibrary.open().should.be.true
             libraryLeftPane = librisLibrary.getLibraryLeftPane()
-            libraryLeftPane.selectGalleryByName(MEDIA_CONTAINER).should.be.true
+            libraryLeftPane.selectGalleryByName(GAL_FOR_RENAME).should.be.true
             galleryBrowser = librisLibrary.getLibraryCenterPane().getGalleryBrowser()
             newName = util.randomString()
         })
 
         it('Rename an image', function() {
-            galleryBrowser.selectImageByName(RENAME_IMAGE).should.be.true
             imageInfo = librisLibrary.getLibraryRightPane().getImageInfo()
+            galleryBrowser.selectImageByName(RENAME_IMAGE, imageInfo).should.be.true
             imageInfo.rename(newName).should.be.true
             originalName = RENAME_IMAGE
             currentInspector = imageInfo
         })
 
         it('Rename an video', function() {
-            galleryBrowser.selectVideoByName(RENAME_VIDEO).should.be.true
             videoInfo = librisLibrary.getLibraryRightPane().getVideoInfo()
+            galleryBrowser.selectVideoByName(RENAME_VIDEO, videoInfo).should.be.true
             videoInfo.rename(newName).should.be.true
             originalName = RENAME_VIDEO
             currentInspector = videoInfo
         })
 
         it('Rename an audio', function() {
-            galleryBrowser.selectAudioByName(RENAME_AUDIO).should.be.true
             audioInfo = librisLibrary.getLibraryRightPane().getAudioInfo()
+            galleryBrowser.selectAudioByName(RENAME_AUDIO, audioInfo).should.be.true
             audioInfo.rename(newName).should.be.true
             originalName = RENAME_AUDIO
             currentInspector = audioInfo
         })
 
         it('Rename an file', function() {
-            galleryBrowser.selectFileByName(RENAME_FILE).should.be.true
             fileInfo = librisLibrary.getLibraryRightPane().getFileInfo()
+            galleryBrowser.selectFileByName(RENAME_FILE, fileInfo).should.be.true
             fileInfo.rename(newName).should.be.true
             originalName = RENAME_FILE
             currentInspector = fileInfo
         })
 
         afterEach(function() {
-            console.log('Current Data Type: ', currentInspector.getType())
+            console.log('Current Data Type: ' + currentInspector.getType())
             galleryBrowser.restoreMediaName(currentInspector, originalName, newName)
             page.newSession()
         })
