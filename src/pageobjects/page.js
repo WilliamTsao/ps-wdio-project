@@ -44,9 +44,7 @@ class Page {
     }
 
     waitForInvisible(element){
-        return browser.waitUntil(()=>{
-            return !element.isVisible()
-        })
+        return browser.waitForVisible(element, 20000, true)
     }
 
     newSession() {
